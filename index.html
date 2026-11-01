@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TEMA 2: Literatura Medieval | 1º Bachillerato - IES Torre del Rei</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #FAF7F2;
+      --bg-card: #FFFFFF;
+      --bg-card-alt: #F4EFE6;
+      --primary: #1E3A5F;
+      --primary-light: #2B547E;
+      --burgundy: #8B1E24;
+      --burgundy-dark: #681318;
+      --gold: #B48327;
+      --gold-light: #DFC385;
+      --text-dark: #1E293B;
+      --text-muted: #64748B;
+      --border-color: rgba(180, 131, 39, 0.34);
+      --shadow-sm: 0 2px 8px rgba(30, 58, 95, 0.05);
+      --shadow-md: 0 6px 18px rgba(30, 58, 95, 0.1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh;
+      overflow: hidden; background-color: var(--bg-main); color: var(--text-dark);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      user-select: none; -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none;
+      border: 8px solid #EAE0D0; z-index: 99;
+      box-shadow: inset 0 0 0 2px var(--gold);
+    }
+    .presentation-container {
+      width: 100vw; height: 100vh; position: relative; overflow: hidden;
+    }
+    .slide {
+      position: absolute; inset: 0; width: 100vw; height: 100vh;
+      padding: clamp(10px, 1.8vh, 20px) clamp(16px, 2.8vw, 38px) clamp(52px, 7vh, 66px) clamp(16px, 2.8vw, 38px);
+      display: flex; flex-direction: column; box-sizing: border-box;
+      opacity: 0; pointer-events: none; transform: scale(0.985);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      background-color: var(--bg-main);
+      background-image: radial-gradient(circle at 90% 10%, rgba(223, 195, 133, 0.14) 0%, transparent 45%),
+                        radial-gradient(circle at 10% 90%, rgba(139, 30, 36, 0.05) 0%, transparent 45%);
+    }
+    .slide.active {
+      opacity: 1; pointer-events: auto; transform: scale(1); z-index: 5;
+    }
+    .slide-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      border-bottom: 2px solid var(--border-color); padding-bottom: clamp(4px, 0.7vh, 7px);
+      margin-bottom: clamp(6px, 1.1vh, 11px); flex-shrink: 0;
+    }
+    .header-left { display: flex; flex-direction: column; gap: 2px; }
+    .slide-category {
+      font-family: 'Cinzel', serif; font-size: clamp(0.64rem, 0.9vw, 0.8rem);
+      font-weight: 700; color: var(--burgundy); letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .slide-title {
+      font-family: 'Cinzel', serif; font-size: clamp(1rem, 1.8vw, 1.55rem);
+      color: var(--primary); font-weight: 700; line-height: 1.15;
+    }
+    .slide-number {
+      font-family: 'Cinzel', serif; font-size: clamp(0.72rem, 0.98vw, 0.9rem);
+      font-weight: 700; color: var(--gold); white-space: nowrap;
+    }
+    .slide-body {
+      flex: 1; min-height: 0; display: flex; gap: clamp(10px, 1.6vw, 22px);
+      align-items: stretch; justify-content: stretch; overflow: hidden;
+    }
+    .pane-text {
+      flex: 1.28; min-height: 0; display: flex; flex-direction: column;
+      justify-content: space-evenly; gap: clamp(4px, 0.8vh, 9px);
+      font-size: clamp(0.74rem, 1vw, 0.94rem); line-height: 1.35;
+    }
+    .pane-text.full-width { flex: 1; }
+    .pane-image {
+      flex: 0.82; min-height: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; position: relative;
+      background: #FFFFFF; border-radius: 12px; padding: 6px;
+      border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);
+      cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;
+      overflow: hidden;
+    }
+    .pane-image:hover {
+      transform: translateY(-2px); box-shadow: var(--shadow-md);
+    }
+    .pane-image img {
+      max-width: 100%; max-height: 100%; object-fit: contain;
+      border-radius: 8px;
+    }
+    .pane-image .zoom-hint {
+      position: absolute; bottom: 8px; right: 10px;
+      background: rgba(30, 41, 59, 0.8); color: #FFF;
+      font-size: 0.66rem; padding: 2px 8px; border-radius: 10px;
+      letter-spacing: 0.5px; backdrop-filter: blur(4px); pointer-events: none;
+    }
+    .card {
+      background: var(--bg-card); border-radius: 8px;
+      padding: clamp(5px, 0.95vh, 11px) clamp(10px, 1.25vw, 16px);
+      border-left: 4px solid var(--gold); box-shadow: var(--shadow-sm);
+      cursor: pointer; position: relative;
+      transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.18s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px) scale(1.006);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.09);
+    }
+    .card::after, .activity-task::after {
+      content: "⤢ Ampliar"; position: absolute; top: 5px; right: 8px;
+      font-size: 0.62rem; font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600; color: var(--gold); background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--border-color); padding: 1px 6px; border-radius: 4px;
+      opacity: 0; transition: opacity 0.18s ease, transform 0.18s ease; pointer-events: none;
+    }
+    .card:hover::after, .activity-task:hover::after {
+      opacity: 0.95; transform: scale(1.02);
+    }
+    .card.burgundy { border-left-color: var(--burgundy); }
+    .card.blue { border-left-color: var(--primary); }
+    .card-title {
+      font-family: 'Cinzel', serif; font-weight: 700; color: var(--primary);
+      font-size: clamp(0.8rem, 1.1vw, 1.02rem); margin-bottom: 3px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .card p, .card li {
+      color: #334155; font-size: clamp(0.72rem, 0.98vw, 0.91rem); line-height: 1.35;
+      text-align: justify;
+    }
+    .card p + p { margin-top: 4px; }
+    .card ul, .card ol { list-style: none; padding-left: 0; }
+    .card ul li, .card ol li { position: relative; padding-left: 15px; margin-bottom: 2px; }
+    /* Hierarchy bullet styles matching original presentation */
+    .card ul.bu-dot > li::before {
+      content: "•"; position: absolute; left: 0; color: var(--gold);
+      font-weight: bold; font-size: 1.05rem; line-height: 1;
+    }
+    .card ul.bu-diamond > li::before {
+      content: "❖"; position: absolute; left: 0; color: var(--burgundy);
+      font-weight: bold; font-size: 0.78rem; line-height: 1.4;
+    }
+    .card ul.bu-circle > li { padding-left: 22px; }
+    .card ul.bu-circle > li::before {
+      content: "o"; position: absolute; left: 6px; color: var(--gold);
+      font-weight: 700; font-size: 0.85rem; line-height: 1.25;
+    }
+    .card ul.bu-sub-arrow > li { padding-left: 24px; }
+    .card ul.bu-sub-arrow > li::before {
+      content: "➢"; position: absolute; left: 6px; color: var(--gold);
+      font-weight: bold; font-size: 0.8rem; line-height: 1.35;
+    }
+    .card ul.bu-arrow > li::before {
+      content: "➔"; position: absolute; left: 0; color: var(--burgundy);
+      font-weight: bold; font-size: 0.82rem; line-height: 1.35;
+    }
+    .card ul.bu-dash > li::before {
+      content: "—"; position: absolute; left: 0; color: var(--gold);
+      font-weight: bold; font-size: 0.9rem; line-height: 1.3;
+    }
+    .card ol.bu-alpha > li { padding-left: 22px; counter-increment: alpha-counter; }
+    .card ol.bu-alpha { counter-reset: alpha-counter; }
+    .card ol.bu-alpha > li::before {
+      content: counter(alpha-counter, lower-alpha) ")";
+      position: absolute; left: 0; color: var(--burgundy); font-weight: 700;
+    }
+    .card ol.bu-num > li { padding-left: 22px; counter-increment: num-counter; }
+    .card ol.bu-num { counter-reset: num-counter; }
+    .card ol.bu-num > li::before {
+      content: counter(num-counter) ")";
+      position: absolute; left: 0; color: var(--burgundy); font-weight: 700;
+    }
+    .card strong { color: #0F172A; font-weight: 700; }
+    .grid-2 {
+      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(6px, 0.95vw, 13px);
+      width: 100%; height: 100%; min-height: 0; align-content: stretch;
+    }
+    .grid-3 {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: clamp(6px, 0.9vw, 12px);
+      width: 100%; height: 100%; min-height: 0;
+    }
+    .comp-table-wrap {
+      width: 100%; height: 100%; min-height: 0; display: flex; flex-direction: column;
+      background: #FFFFFF; border-radius: 8px; border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm); overflow: hidden; cursor: pointer; position: relative;
+      transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.18s ease;
+    }
+    .comp-table-wrap:hover {
+      transform: translateY(-2px) scale(1.004);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+    .comp-table-wrap::after {
+      content: "⤢ Ampliar tabla"; position: absolute; top: 5px; right: 8px;
+      font-size: 0.64rem; font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600; color: var(--primary); background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-color); padding: 1px 6px; border-radius: 4px;
+      opacity: 0; transition: opacity 0.18s ease; pointer-events: none; z-index: 5;
+    }
+    .comp-table-wrap:hover::after { opacity: 0.95; }
+    .comp-table {
+      width: 100%; height: 100%; border-collapse: collapse; font-size: clamp(0.62rem, 0.85vw, 0.79rem);
+    }
+    .comp-table th {
+      background: var(--primary); color: #FFFFFF; font-family: 'Cinzel', serif;
+      padding: clamp(3px, 0.5vh, 6px) clamp(6px, 0.8vw, 10px); text-align: left;
+      font-size: clamp(0.68rem, 0.92vw, 0.86rem); letter-spacing: 0.5px;
+    }
+    .comp-table th:nth-child(2) { background: var(--burgundy); }
+    .comp-table th:nth-child(3) { background: var(--gold); color: #fff; }
+    .comp-table td {
+      padding: clamp(2px, 0.4vh, 4px) clamp(5px, 0.75vw, 9px); border-bottom: 1px solid #E2E8F0;
+      line-height: 1.22; vertical-align: middle; color: #334155; text-align: justify;
+    }
+    .comp-table tr:nth-child(even) td { background-color: #FAF8F5; }
+    .comp-table tr:hover td { background-color: #FEF3C7; }
+    .comp-table .row-cat {
+      font-weight: 700; color: #1E293B; font-family: 'Cinzel', serif;
+      background-color: #F4EFE6 !important; width: 16%;
+    }
+    .quote-hero {
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center; padding: 0 clamp(16px, 5vw, 80px);
+      background: radial-gradient(circle at center, rgba(223, 195, 133, 0.35) 0%, transparent 70%);
+    }
+    .quote-icon {
+      font-family: 'Cinzel', serif; font-size: clamp(2.6rem, 5.2vh, 4rem);
+      color: var(--gold); line-height: 1; margin-bottom: clamp(6px, 1vh, 12px);
+    }
+    .quote-text {
+      font-family: 'Cinzel', serif; font-size: clamp(0.92rem, 1.9vh, 1.38rem);
+      line-height: 1.55; color: #1E293B; font-style: italic; max-width: 960px;
+    }
+    .quote-author {
+      margin-top: clamp(12px, 2.2vh, 22px); font-size: clamp(0.84rem, 1.2vw, 1.12rem);
+      font-weight: 700; color: var(--burgundy); letter-spacing: 1.5px;
+      text-transform: uppercase; font-family: 'Cinzel', serif;
+    }
+    .quote-start-btn {
+      margin-top: clamp(16px, 2.8vh, 28px); padding: 10px 28px;
+      background: linear-gradient(135deg, var(--burgundy) 0%, var(--primary) 100%);
+      color: white; border: none; border-radius: 30px; font-family: 'Cinzel', serif;
+      font-size: clamp(0.82rem, 1.12vw, 0.98rem); font-weight: 700; cursor: pointer;
+      box-shadow: 0 4px 14px rgba(139, 30, 36, 0.3); transition: transform 0.2s ease;
+    }
+    .quote-start-btn:hover { transform: scale(1.05); }
+    .cover-layout {
+      display: flex; height: 100%; align-items: center; justify-content: space-between;
+      gap: clamp(20px, 3vw, 50px);
+    }
+    .cover-info { flex: 1.15; display: flex; flex-direction: column; justify-content: center; }
+    .cover-title {
+      font-family: 'Cinzel', serif; font-size: clamp(2rem, 4.2vw, 3.4rem);
+      color: var(--primary); font-weight: 900; line-height: 1.1; margin-bottom: 18px;
+    }
+    .cover-meta {
+      padding-top: 16px; border-top: 2px solid var(--border-color);
+      font-size: clamp(0.9rem, 1.2vw, 1.12rem); color: #334155; font-weight: 500;
+      display: flex; flex-direction: column; gap: 6px; font-family: 'Cinzel', serif;
+    }
+    .cover-img-pane { flex: 0.85; height: 84%; display: flex; align-items: center; justify-content: center; }
+    .cover-img-pane img {
+      max-height: 100%; max-width: 100%; object-fit: contain;
+      border-radius: 14px; box-shadow: var(--shadow-md); border: 2px solid var(--border-color);
+      cursor: pointer; background: #fff; padding: 6px;
+    }
+    .contents-slide-body {
+      flex: 1; min-height: 0; display: flex; gap: clamp(14px, 2vw, 28px);
+      align-items: stretch; justify-content: space-between;
+      padding: clamp(4px, 0.8vh, 10px) 0;
+    }
+    .contents-col-container {
+      flex: 1.55; display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(12px, 1.8vw, 24px); height: 100%; min-height: 0;
+    }
+    .contents-column {
+      display: flex; flex-direction: column; justify-content: space-evenly;
+      gap: clamp(6px, 1.1vh, 14px);
+      background: #FFFFFF; border: 1px solid var(--border-color);
+      border-radius: 14px; padding: clamp(10px, 1.6vh, 18px) clamp(14px, 1.6vw, 22px);
+      box-shadow: var(--shadow-sm);
+    }
+    .contents-section {
+      display: flex; flex-direction: column; gap: clamp(3px, 0.6vh, 7px);
+    }
+    .c-head {
+      font-family: 'Cinzel', serif; font-size: clamp(0.84rem, 1.15vw, 1.04rem);
+      font-weight: 700; color: var(--primary); padding: 3px 8px; border-radius: 6px;
+      cursor: pointer; transition: all 0.15s ease; display: inline-block;
+      border-left: 4px solid var(--burgundy); background: #FDF8F6;
+    }
+    .c-head:hover { background: #FEE2E2; color: var(--burgundy-dark); }
+    .c-lvl1 {
+      display: flex; align-items: flex-start; gap: 8px;
+      padding-left: clamp(10px, 1.1vw, 16px);
+      font-size: clamp(0.76rem, 1.02vw, 0.92rem); font-weight: 500;
+      color: #1E293B; cursor: pointer; border-radius: 6px; padding-top: 2px; padding-bottom: 2px;
+      transition: all 0.15s ease; line-height: 1.3;
+    }
+    .c-lvl1::before {
+      content: "•"; color: var(--burgundy); font-weight: bold;
+      font-size: 1.15rem; line-height: 1; flex-shrink: 0;
+    }
+    .c-lvl1:hover { background: #FEF3C7; color: var(--burgundy-dark); }
+    .c-lvl2 {
+      display: flex; align-items: flex-start; gap: 7px;
+      padding-left: clamp(26px, 2.8vw, 40px);
+      font-size: clamp(0.72rem, 0.95vw, 0.86rem); font-weight: 400;
+      color: #475569; cursor: pointer; border-radius: 6px; padding-top: 1px; padding-bottom: 1px;
+      transition: all 0.15s ease; line-height: 1.28;
+    }
+    .c-lvl2::before {
+      content: "o"; color: var(--gold); font-weight: 700;
+      font-size: 0.85rem; line-height: 1.2; flex-shrink: 0;
+    }
+    .c-lvl2:hover { background: #F1F5F9; color: var(--primary); font-weight: 600; }
+    .contents-bust-pane {
+      flex: 0.45; display: flex; align-items: center; justify-content: center;
+      position: relative; border-radius: 16px;
+      background: radial-gradient(ellipse at center, rgba(223, 195, 133, 0.4) 0%, rgba(250, 247, 242, 0) 72%);
+      padding: 6px; cursor: pointer;
+    }
+    .contents-bust-pane img {
+      max-height: 92%; max-width: 92%; object-fit: contain;
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,0.16));
+      transition: transform 0.25s ease;
+    }
+    .contents-bust-pane:hover img { transform: scale(1.03); }
+    .video-frame {
+      width: 100%; height: 100%; max-height: 100%; display: flex;
+      align-items: center; justify-content: center; background: #000;
+      border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md);
+    }
+    .video-frame video {
+      width: 100%; height: 100%; object-fit: contain;
+    }
+    .bottom-bar {
+      position: fixed; bottom: 8px; left: 8px; right: 8px; height: 46px;
+      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border-color); display: flex;
+      align-items: center; justify-content: space-between; padding: 0 clamp(12px, 2vw, 24px);
+      z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+    .progress-track {
+      position: absolute; top: 0; left: 0; height: 3px; background: #E2E8F0; width: 100%;
+    }
+    .progress-bar {
+      height: 100%; background: linear-gradient(90deg, var(--gold) 0%, var(--burgundy) 50%, var(--primary) 100%);
+      width: 0%; transition: width 0.3s ease;
+    }
+    .nav-controls { display: flex; align-items: center; gap: 8px; }
+    .nav-btn {
+      background: #F1F5F9; border: 1px solid #CBD5E1; color: #334155;
+      width: 34px; height: 34px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; cursor: pointer;
+      font-weight: bold; font-size: 1.15rem; transition: all 0.15s ease;
+    }
+    .nav-btn:hover:not(:disabled) {
+      background: var(--primary); color: white; border-color: var(--primary);
+      transform: scale(1.08);
+    }
+    .nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+    .indicator {
+      font-family: 'Cinzel', serif; font-size: clamp(0.72rem, 1vw, 0.9rem);
+      font-weight: 700; color: #475569; min-width: 115px; text-align: center;
+    }
+    .aux-controls { display: flex; align-items: center; gap: 8px; }
+    .aux-btn {
+      background: #FFFFFF; border: 1px solid #CBD5E1; color: #475569;
+      padding: 5px 11px; border-radius: 6px; font-size: 0.76rem; font-weight: 600;
+      cursor: pointer; display: flex; align-items: center; gap: 5px; transition: all 0.15s ease;
+    }
+    .aux-btn:hover { background: #F8FAFC; color: var(--primary); border-color: var(--primary); }
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(5px); z-index: 200; display: none;
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .index-drawer {
+      background: #FFFFFF; width: 92%; max-width: 980px; max-height: 85vh;
+      border-radius: 12px; border: 2px solid var(--gold); display: flex;
+      flex-direction: column; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    .drawer-header {
+      padding: 14px 20px; background: var(--primary); color: white;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .drawer-header h3 { font-family: 'Cinzel', serif; margin: 0; font-size: 1.2rem; }
+    .drawer-close { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+    .drawer-body {
+      padding: 16px 20px; overflow-y: auto; display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 8px;
+    }
+    .drawer-item {
+      padding: 7px 11px; border-radius: 6px; border: 1px solid #E2E8F0;
+      font-size: 0.79rem; color: #1E293B; cursor: pointer; display: flex;
+      align-items: center; gap: 8px; transition: background 0.15s ease;
+    }
+    .drawer-item:hover { background: #FEF3C7; border-color: var(--gold); }
+    .drawer-item.current { background: #DBEAFE; border-color: var(--primary); font-weight: bold; }
+    .drawer-item .item-num {
+      font-family: 'Cinzel', serif; font-weight: 700; color: var(--burgundy); min-width: 24px;
+    }
+    .lightbox-overlay {
+      position: fixed; inset: 0; background: rgba(0, 0, 0, 0.88);
+      z-index: 300; display: none; align-items: center; justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox-overlay.active { display: flex; }
+    .lightbox-img {
+      max-width: 93vw; max-height: 92vh; object-fit: contain;
+      border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      background-color: #FFFFFF; padding: 4px;
+    }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 24px; color: white;
+      font-size: 2.2rem; cursor: pointer; background: rgba(0,0,0,0.4);
+      width: 44px; height: 44px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; line-height: 1;
+    }
+    /* CARD EXPANSION MODAL */
+    .card-modal-overlay {
+      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(6px); z-index: 350; display: none;
+      align-items: center; justify-content: center; padding: clamp(16px, 3vw, 40px);
+      cursor: zoom-out;
+    }
+    .card-modal-overlay.active { display: flex; }
+    .card-modal-container {
+      background: #FFFFFF; border-radius: 16px;
+      max-width: 880px; width: 92%; max-height: 86vh;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      border: 2px solid var(--gold); border-left-width: 10px;
+      display: flex; flex-direction: column; position: relative;
+      overflow: hidden; cursor: default;
+      animation: popCardModal 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes popCardModal {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .card-modal-container.burgundy { border-left-color: var(--burgundy); }
+    .card-modal-container.blue { border-left-color: var(--primary); }
+    .card-modal-container.gold { border-left-color: var(--gold); }
+    .card-modal-container.tone-blue { border-left-color: #1E3A5F; background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%); }
+    .card-modal-container.tone-amber { border-left-color: #B48327; background: linear-gradient(135deg, #FFFDF7 0%, #FEF3C7 100%); }
+    .card-modal-container.tone-emerald { border-left-color: #166534; background: linear-gradient(135deg, #F6FEF9 0%, #DCFCE7 100%); }
+    .card-modal-container.tone-purple { border-left-color: #5B21B6; background: linear-gradient(135deg, #FAF8FF 0%, #EDE9FE 100%); }
+    .card-modal-container.tone-rose { border-left-color: #9F1239; background: linear-gradient(135deg, #FFF8F9 0%, #FFE4E6 100%); }
+    .card-modal-container.tone-teal { border-left-color: #115E59; background: linear-gradient(135deg, #F4FFFD 0%, #CCFBF1 100%); }
+
+    /* Slide 6: 6-color full-height question cards */
+    .q-grid-6 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, 1fr);
+      gap: clamp(10px, 1.3vw, 16px);
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      flex: 1;
+    }
+    .card.q-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: clamp(10px, 1.8vh, 20px) clamp(14px, 1.8vw, 24px);
+      border-radius: 12px;
+      border-left-width: 6px;
+    }
+    .card.q-card p {
+      font-size: clamp(0.95rem, 1.32vw, 1.24rem);
+      line-height: 1.48;
+      color: #1E293B;
+      width: 100%;
+      text-align: justify;
+    }
+    .card.q-card p strong {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(24px, 2.2vw, 32px);
+      height: clamp(24px, 2.2vw, 32px);
+      border-radius: 50%;
+      color: #FFFFFF;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.88rem, 1.15vw, 1.08rem);
+      margin-right: 8px;
+      vertical-align: middle;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+    }
+    .card.q-card.tone-blue {
+      background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+      border: 1px solid #BFDBFE;
+      border-left: 6px solid #1E3A5F;
+    }
+    .card.q-card.tone-blue p strong { background: #1E3A5F; }
+    .card.q-card.tone-amber {
+      background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+      border: 1px solid #FDE68A;
+      border-left: 6px solid #B48327;
+    }
+    .card.q-card.tone-amber p strong { background: #B48327; }
+    .card.q-card.tone-emerald {
+      background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+      border: 1px solid #A7F3D0;
+      border-left: 6px solid #166534;
+    }
+    .card.q-card.tone-emerald p strong { background: #166534; }
+    .card.q-card.tone-purple {
+      background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+      border: 1px solid #DDD6FE;
+      border-left: 6px solid #5B21B6;
+    }
+    .card.q-card.tone-purple p strong { background: #5B21B6; }
+    .card.q-card.tone-rose {
+      background: linear-gradient(135deg, #FFF1F2 0%, #FFE4E6 100%);
+      border: 1px solid #FECDD3;
+      border-left: 6px solid #9F1239;
+    }
+    .card.q-card.tone-rose p strong { background: #9F1239; }
+    .card.q-card.tone-teal {
+      background: linear-gradient(135deg, #F0FDFA 0%, #CCFBF1 100%);
+      border: 1px solid #99F6E4;
+      border-left: 6px solid #115E59;
+    }
+    .card.q-card.tone-teal p strong { background: #115E59; }
+    .card-modal-close {
+      position: absolute; top: 12px; right: 14px; width: 36px; height: 36px;
+      border-radius: 50%; background: #F1F5F9; border: 1px solid #CBD5E1;
+      color: #334155; font-size: 1.3rem; font-weight: bold; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s ease; z-index: 10; line-height: 1;
+    }
+    .card-modal-close:hover {
+      background: var(--burgundy); color: white; border-color: var(--burgundy);
+      transform: scale(1.08);
+    }
+    .card-modal-content {
+      padding: clamp(22px, 3.5vh, 38px) clamp(22px, 3vw, 42px);
+      overflow-y: auto; font-size: clamp(0.98rem, 1.3vw, 1.22rem);
+      line-height: 1.6; color: #1E293B;
+    }
+    .card-modal-content .card-title {
+      font-family: 'Cinzel', serif; font-size: clamp(1.25rem, 1.9vw, 1.7rem);
+      color: var(--primary); margin-bottom: 14px; font-weight: 700;
+      border-bottom: 2px solid var(--border-color); padding-bottom: 8px;
+    }
+    .card-modal-content p, .card-modal-content li {
+      font-size: clamp(0.96rem, 1.28vw, 1.18rem); line-height: 1.6; margin-bottom: 8px;
+      color: #334155; text-align: justify;
+    }
+    .card-modal-content ul, .card-modal-content ol {
+      list-style: none; padding-left: 0; margin-top: 8px; margin-bottom: 12px;
+    }
+    .card-modal-content ul li, .card-modal-content ol li {
+      position: relative; padding-left: 26px; margin-bottom: 8px;
+    }
+    .card-modal-content ul li::before {
+      content: "❖"; position: absolute; left: 4px; color: var(--gold);
+      font-weight: bold; font-size: 1rem; line-height: 1.4;
+    }
+    .card-modal-content .comp-table-wrap::after,
+    .card-modal-content .card::after,
+    .card-modal-content .activity-task::after { display: none !important; }
+    .card-modal-footer {
+      padding: 8px 20px; background: #F8FAFC; border-top: 1px solid #E2E8F0;
+      text-align: center; font-size: 0.8rem; color: #64748B; font-family: 'Cinzel', serif;
+    }
+    .activity-container {
+      display: flex; width: 100%; height: 100%; min-height: 0; gap: clamp(18px, 2.5vw, 36px);
+      align-items: center; justify-content: center; padding: 0 clamp(10px, 2vw, 30px);
+    }
+    .activity-img-box {
+      flex: 0.85; height: 100%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; position: relative;
+    }
+    .activity-img-box img {
+      max-height: 76%; max-width: 88%; object-fit: contain;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.14)); border-radius: 12px;
+      transition: transform 0.22s ease;
+    }
+    .activity-img-box:hover img {
+      transform: scale(1.03);
+    }
+    .activity-info-box {
+      flex: 1.05; display: flex; flex-direction: column; justify-content: center;
+      gap: clamp(10px, 1.8vh, 18px);
+    }
+    .activity-badge {
+      display: inline-block; align-self: flex-start; background: #FEF3C7; color: #92400E;
+      font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.85rem;
+      padding: 4px 14px; border-radius: 20px; border: 1px solid #FCD34D;
+    }
+    .activity-task {
+      background: #FFFFFF; border-radius: 10px; padding: clamp(16px, 2.4vh, 26px) clamp(18px, 2.2vw, 28px);
+      border-left: 5px solid var(--primary); box-shadow: var(--shadow-sm);
+      cursor: pointer; position: relative;
+      transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.18s ease;
+    }
+    .activity-task:hover {
+      transform: translateY(-2px) scale(1.008);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+    .activity-task h4 {
+      font-family: 'Cinzel', serif; color: var(--primary); font-size: clamp(1rem, 1.4vw, 1.28rem);
+      margin-bottom: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;
+    }
+    .activity-task p {
+      font-size: clamp(0.88rem, 1.15vw, 1.06rem); color: #334155; line-height: 1.55;
+      text-align: justify;
+    }
+    @media (max-width: 900px) {
+      .slide-body { flex-direction: column; }
+      .pane-text { flex: 1.35; }
+      .pane-image { flex: 0.65; }
+      .grid-2, .grid-3, .contents-col-container, .q-grid-6 { grid-template-columns: 1fr; }
+      .cover-layout { flex-direction: column-reverse; text-align: center; }
+      .cover-img-pane { height: 42%; }
+      .activity-container { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="presentation-container" id="presentationContainer">
+
+    <!-- SLIDE 1: Portada -->
+    <section class="slide active" data-index="1" data-title="Portada: Literatura Medieval">
+      <div class="cover-layout">
+        <div class="cover-info">
+          <h1 class="cover-title"><strong>LITERATURA MEDIEVAL</strong></h1>
+          <div class="cover-meta">
+            <span>1ºBACHILLERATO</span>
+            <span>IES TORRE DEL REI</span>
+            <span>PROF. NURIA RIBÉS</span>
+          </div>
+        </div>
+        <div class="cover-img-pane">
+          <img src="presentacion_recursos/image7.jpg" alt="LITERATURA MEDIEVAL" onclick="openLightbox(this.src)">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: CONTENIDOS -->
+    <section class="slide" data-index="2" data-title="Contenidos">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title">CONTENIDOS</h2>
+        </div>
+        <span class="slide-number">02 / 40</span>
+      </div>
+      <div class="contents-slide-body">
+        <div class="contents-col-container">
+          <!-- Columna 1 -->
+          <div class="contents-column">
+            <div class="contents-section">
+              <div class="c-head" onclick="goToSlide(4)"><strong>2.1 contexto histórico</strong></div>
+            </div>
+            <div class="contents-section">
+              <div class="c-head" onclick="goToSlide(12)"><strong>2.2 La literatura épica: la epopeya medieval</strong></div>
+              <div class="c-lvl1" onclick="goToSlide(14)"><span>La épica germánica: <em>Beowulf</em>, <em>Cantar de los Nibelungos</em></span></div>
+              <div class="c-lvl1" onclick="goToSlide(17)"><span>La épica románica: Cantar de Roldán</span></div>
+            </div>
+            <div class="contents-section">
+              <div class="c-head" onclick="goToSlide(22)"><strong>2.3 La literatura caballeresca</strong></div>
+              <div class="c-lvl1" onclick="goToSlide(23)"><span>La materia de la Antigüedad</span></div>
+              <div class="c-lvl1" onclick="goToSlide(24)"><span>La materia de Bretaña</span></div>
+              <div class="c-lvl2" onclick="goToSlide(24)"><span>El ciclo artúrico</span></div>
+              <div class="c-lvl2" onclick="goToSlide(25)"><span>La leyenda de Tristán e Iseo</span></div>
+            </div>
+          </div>
+          <!-- Columna 2 -->
+          <div class="contents-column">
+            <div class="contents-section">
+              <div class="c-head" onclick="goToSlide(27)"><strong>2.4 La lírica medieval</strong></div>
+              <div class="c-lvl1" onclick="goToSlide(27)"><span>La canción de mujer</span></div>
+              <div class="c-lvl1" onclick="goToSlide(28)"><span>La poesía provenzal</span></div>
+            </div>
+            <div class="contents-section">
+              <div class="c-head" onclick="goToSlide(24)"><strong>2.5 El cuento medieval</strong></div>
+              <div class="c-lvl1" onclick="goToSlide(31)"><span><em>Las mil y una noches</em></span></div>
+              <div class="c-lvl1" onclick="goToSlide(32)"><span><em>Los cuentos de Canterbury</em></span></div>
+            </div>
+            <div class="contents-section">
+              <div class="c-head" onclick="goToSlide(35)"><strong>2.6 El teatro medieval. Origen y géneros</strong></div>
+              <div class="c-lvl1" onclick="goToSlide(35)"><span>El teatro medieval religioso</span></div>
+              <div class="c-lvl1" onclick="goToSlide(31)"><span>Las danzas de la muerte</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="contents-bust-pane" onclick="openLightbox('presentacion_recursos/image8.png')">
+          <img src="presentacion_recursos/image8.png" alt="Caballero medieval">
+          <span class="zoom-hint" style="position:absolute;bottom:8px;right:12px;background:rgba(30,41,59,0.8);color:#fff;font-size:0.66rem;padding:2px 8px;border-radius:10px;">🔍 Ampliar</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: Tabla Literatura Clásica - Literatura Medieval -->
+    <section class="slide" data-index="3" data-title="Literatura Clásica vs Literatura Medieval">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>LITERATURA CLÁSICA ➔ LITERATURA MEDIEVAL</strong></h2>
+        </div>
+        <span class="slide-number">03 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="comp-table-wrap">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th style="width: 50%;"><strong>LITERATURA CLÁSICA</strong></th>
+                <th style="width: 50%;"><strong>LITERATURA MEDIEVAL</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>La <strong>naturaleza</strong> se explica a partir de <strong>mitos</strong>, relatos fabulosos que dan cuenta del <strong>origen de las cosas</strong>.</td>
+                <td>La <strong>naturaleza</strong> se considera <strong>creación de Dios</strong>, vulnerada por el pecado del hombre.</td>
+              </tr>
+              <tr>
+                <td>Predomina una <strong>mentalidad fatalista</strong>, según la cual el <strong>hombre, mortal</strong>, cumple un destino, voluntad de los <strong>dioses, inmortales</strong>.</td>
+                <td>Predominio del <strong>espíritu religioso</strong> como principio informador de la vida: <strong>devociones</strong>, <strong>leyendas piadosas</strong>...</td>
+              </tr>
+              <tr>
+                <td>Honda <strong>admiración hacia lo aristocrático</strong>; la literatura ensalza a los héroes, personajes con <strong>cualidades extraordinarias</strong>, dignos de ser imitados.</td>
+                <td>Poderoso <strong>arraigo de lo popular</strong>; la literatura responde a las <strong>tradiciones</strong> y <strong>necesidades identitarias del pueblo</strong>.</td>
+              </tr>
+              <tr>
+                <td>Se rinde culto a lo <strong>bello</strong>, lo <strong>bueno</strong> y lo <strong>verdadero</strong>, virtudes con las que se logra <strong>equilibrio</strong> y <strong>armonía</strong>.</td>
+                <td>Concepción de la <strong>belleza como un bien caduco</strong> que nos recuerda que <strong>lo único eterno es Dios</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>Superación de la muerte</strong>; el <strong>tiempo</strong> no se concibe desde un punto de vista lineal, sino <strong>cíclico</strong>, por lo que el <strong>mundo</strong> se construye sobre el <strong>eterno retorno</strong> de valores que se pierden y recuperan continuamente.</td>
+                <td><strong>Presencia de la muerte</strong>; el <strong>mundo</strong> se suele contemplar como un <strong>valle de lágrimas</strong>, un <strong>lugar de tránsito</strong> hacia la bienaventuranza eterna o el castigo eterno.</td>
+              </tr>
+              <tr>
+                <td>Se desarrolla el pensamiento <strong>científico</strong>, <strong>filosófico</strong> y <strong>político</strong>, dentro de un <strong>espíritu racional</strong>, en el que destacan <strong>Platón</strong> y <strong>Aristóteles</strong>.</td>
+                <td>Se desarrolla el <strong>pensamiento cristiano</strong>, con un <strong>espíritu moral</strong>, en el que destaca la escolástica, cuyas obras sirven a la <strong>edificación del ser humano</strong>.</td>
+              </tr>
+              <tr>
+                <td>La <strong>influencia de la cultura griega sobre la romana</strong> se percibe con fuerza en la literatura latina.</td>
+                <td><strong>Influencias extranjeras</strong>, sobre todo <strong>árabes</strong> y <strong>orientales</strong>, que dan un sabor especial a las obras.</td>
+              </tr>
+              <tr>
+                <td>El <strong>griego</strong> y el <strong>latín</strong> se convierten en las <strong>lenguajes de cultura de Occidente</strong>, por encima del idioma propio de cada territorio.</td>
+                <td>El <strong>griego</strong> y, sobre todo, el <strong>latín</strong> siguen teniendo un enorme <strong>peso en todos los ámbitos de la cultura</strong>, pero cobran <strong>protagonismo las lenguas nacionales</strong>.</td>
+              </tr>
+              <tr>
+                <td>Los <strong>géneros literarios</strong> son <strong>variados</strong> y <strong>originales</strong>: épica, tragedia, <strong>comedia</strong>, <strong>lírica</strong>, <strong>historia</strong>, <strong>oratoria</strong>. Nacen en Grecia y pasan a Roma, que crea la <strong>sátira</strong>.</td>
+                <td>Los <strong>géneros literarios</strong> son muy <strong>limitados</strong>, predomina la <strong>épica</strong> y la <strong>lírica amorosa o religiosa</strong>.</td>
+              </tr>
+              <tr>
+                <td>El sistema de <strong>versificación</strong> se basa en la <strong>cantidad vocálica</strong>, que genera <strong>ritmos</strong>.</td>
+                <td>El sistema de <strong>versificación</strong> se basa en el <strong>cómputo silábico</strong> y en la <strong>rima</strong>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Cronología General Alta y Baja Edad Media -->
+    <section class="slide" data-index="4" data-title="Alta Edad Media y Baja Edad Media">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>ALTA EDAD MEDIA • BAJA EDAD MEDIA</strong></h2>
+        </div>
+        <span class="slide-number">04 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-image" style="flex: 1;" onclick="openLightbox('presentacion_recursos/image10.png')">
+          <img src="presentacion_recursos/image10.png" alt="Cronología Alta y Baja Edad Media">
+          <span class="zoom-hint">🔍 Ampliar Cronología</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: 2.1 contexto histórico (Vídeo The King) -->
+    <section class="slide" data-index="5" data-title="2.1 contexto histórico: The King">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.1 contexto histórico</strong></h2>
+        </div>
+        <span class="slide-number">05 / 40</span>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 10px;">
+        <div class="card burgundy" style="flex-shrink: 0;">
+          <p style="font-size: clamp(0.88rem, 1.25vw, 1.12rem); text-align: center;"><strong>¿QUÉ NOS ENSEÑA LA CULTURA MEDIEVAL? ¿POR QUÉ SIGUE FASCINÁNDONOS HOY EN DÍA?</strong></p>
+        </div>
+        <div class="video-frame" style="flex: 1; min-height: 0;">
+          <video controls preload="metadata">
+            <source src="2.1 The King.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: 2.1 contexto histórico (Preguntas The King) -->
+    <section class="slide" data-index="6" data-title="2.1 contexto histórico: Cuestiones">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.1 contexto histórico</strong></h2>
+        </div>
+        <span class="slide-number">06 / 40</span>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 10px;">
+        <div class="card burgundy" style="flex-shrink: 0; padding: 8px 16px;">
+          <p style="font-size: clamp(0.88rem, 1.22vw, 1.1rem); text-align: center;"><strong>¿QUÉ NOS ENSEÑA LA CULTURA MEDIEVAL? ¿POR QUÉ SIGUE FASCINÁNDONOS HOY EN DÍA?</strong></p>
+        </div>
+        <div class="q-grid-6">
+          <div class="card q-card tone-blue">
+            <p><strong>a</strong> «Un rey no tiene amigos; solo partidarios y detractores». Comenta estas palabras de John Falstaff, consejero de Enrique. ¿Qué nos dicen acerca de la crisis del poder real?</p>
+          </div>
+          <div class="card q-card tone-amber">
+            <p><strong>b</strong> Durante la Edad Media, Europa se identificó con la cristiandad, sustentada sobre la Iglesia, autoridad religiosa; y la monarquía, autoridad secular. ¿Cómo se manifiesta este hecho en la ceremonia de la coronación?</p>
+          </div>
+          <div class="card q-card tone-emerald">
+            <p><strong>c</strong> La inseguridad trajo consigo la decadencia del comercio. El valor de las tierras creció y los reyes empezaron a pagar con ellas a los nobles que defendían sus dominios. ¿Qué comportó esta decisión? Relaciónalo con el feudalismo.</p>
+          </div>
+          <div class="card q-card tone-purple">
+            <p><strong>d</strong> En este contexto, ideales como el honor y la lealtad cobran mucha importancia. ¿Por qué razón? ¿Quién los representa en la película?</p>
+          </div>
+          <div class="card q-card tone-rose">
+            <p><strong>e</strong> La violencia y la guerra se convierten en realidades cotidianas. ¿En qué escenas se perciben con más claridad? Observa que la paz, cuando existe, es frágil y engañosa, ¿qué dice Felipa a su hermano el rey mientras pasean?</p>
+          </div>
+          <div class="card q-card tone-teal">
+            <p><strong>f</strong> ¿Qué tipo de literatura cabe esperar de una sociedad como la que hemos descrito? Piensa, por ejemplo, en los poemas épicos, los relatos caballerescos, la lírica provenzal o las danzas de la muerte. Coméntalo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: 2.1 contexto histórico (Cronología y La Cristiandad) -->
+    <section class="slide" data-index="7" data-title="2.1 contexto histórico: Cronología">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.1 contexto histórico</strong></h2>
+        </div>
+        <span class="slide-number">07 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.45;">
+          <div class="card blue">
+            <p><strong>CRONOLOGÍA</strong></p>
+            <ul class="bu-diamond">
+              <li><strong>Inicio</strong>: caída del Imperio romano de Occidente (476 d.C.)</li>
+              <li><strong>Fin</strong>:
+                <ul class="bu-sub-arrow">
+                  <li>1453: caída de Constantinopla</li>
+                  <li>1454: primera Biblio de Gutenberg</li>
+                  <li>1492: descubrimiento de América</li>
+                </ul>
+              </li>
+            </ul>
+            <p style="margin-top: 3px;">El período suele dividirse en dos partes: la <u>Alta Edad Media</u> (hasta el final del primer milenio) y <u>la Baja Edad Media</u> (a partir del siglo XI)</p>
+          </div>
+          <div class="card">
+            <p><strong>¿Cómo surgió el término Edad Media? </strong></p>
+            <p>Fueron los humanistas italianos quienes crearon este concepto para caracterizar, con cierto desdén, una <strong>etapa entre dos épocas</strong>: la Antigüedad clásica y la Edad Moderna, sugiriendo, de modo erróneo, un paréntesis de diez siglos en los que la política, la sociedad, la economía, el pensamiento y la cultura se plegaron sobre sí mismos interrumpiendo el desarrollo del continente. Hoy, por el contrario, se admite que el Medievo, con sus luces y sus sombras, fue un momento crucial en la conformación del espíritu europeo.</p>
+          </div>
+          <div class="card burgundy">
+            <p><strong>LA CRISTIANDAD</strong></p>
+            <p>La Edad Media supuso el <strong>triunfo del cristianismo </strong>en todo el continente y <strong>generó las identidades nacionales </strong>que han dado lugar a los distintos estados, asociados casi siempre a una lengua vernácula propia y a una herencia latina común. Pero fue también la época que vio el nacimiento y la gran expansión del islam (Mahoma murió en el 632 de la era cristiana), religión que, junto con el judaísmo, hizo aportaciones fundamentales a la cultura europea medieval.</p>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.65;" onclick="openLightbox('presentacion_recursos/image12.png')">
+          <img src="presentacion_recursos/image12.png" alt="La Cristiandad y Edad Media">
+          <span class="zoom-hint">🔍 Ampliar</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: 2.1 contexto histórico (La Cristiandad II) -->
+    <section class="slide" data-index="8" data-title="2.1 contexto histórico: La Cristiandad">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.1 contexto histórico</strong></h2>
+        </div>
+        <span class="slide-number">08 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.4;">
+          <div class="card burgundy">
+            <p><strong>LA CRISTIANDAD</strong></p>
+            <p>La <strong>fragmentación territorial </strong>que impusieron los pueblos invasores —ostrogodos y lombardos, en Italia; anglos y sajones, en Gran Bretaña; francos y borgoñones, en Francia; alamanes, turingios y bávaros, en Alemania; alanos, en Portugal; suevos, vándalos y visigodos, en España— hizo que fuera <strong>imposible mantener la administración centralizada y la unidad cultural </strong>que había garantizado hasta entonces la prosperidad.</p>
+          </div>
+          <div class="card">
+            <p>Muchos de los <strong>logros</strong> alcanzados por los romanos se hundieron junto con su civilización.:</p>
+            <ul class="bu-dash">
+              <li>la agricultura metódica,</li>
+              <li>la explotación minera,</li>
+              <li>las obras públicas,</li>
+              <li>la red de calzadas,</li>
+              <li>las vías de comercio marítimo,</li>
+              <li>la economía monetaria</li>
+            </ul>
+          </div>
+          <div class="card blue">
+            <p>Para frenar el declive era preciso encontrar un fundamento espiritual sobre el que cimentar un nuevo sistema político y recuperar la estabilidad perdida: la <strong>cristiandad</strong>. El objetivo era hacer de Europa un <strong>imperio espiritual </strong>articulado en <u>dos niveles</u>:</p>
+            <ul class="bu-diamond">
+              <li>por un lado, la Iglesia, la autoridad religiosa;</li>
+              <li>por otro, el Imperio, la autoridad secular.</li>
+            </ul>
+            <p>A la cabeza de la primera se encontraría el papa; liderando la segunda, el emperador. Uno ostentaría la autoridad moral; el otro, la jurídica. La realización concreta de esta idea fue el <strong>Imperio de Carlomagno (768-814)</strong>, el monarca más influyente de toda la Edad Media.</p>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.65;" onclick="openLightbox('presentacion_recursos/image12.png')">
+          <img src="presentacion_recursos/image12.png" alt="Fragmentación e Imperio">
+          <span class="zoom-hint">🔍 Ampliar</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: 2.1 contexto histórico (El Imperio Carolingio y El Feudalismo) -->
+    <section class="slide" data-index="9" data-title="2.1 contexto histórico: Imperio Carolingio y Feudalismo">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.1 contexto histórico</strong></h2>
+        </div>
+        <span class="slide-number">09 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text">
+          <div class="card blue">
+            <p><strong>EL IMPERIO CAROLINGIO</strong></p>
+            <p>La idea sobre la que Carlomagno (768-814) construyó su Imperio —<strong>unión de las culturas germánica, romana y cristiana como fuente de la moral y del derecho</strong>— gozó de un inmenso prestigio y fue adoptada como modelo por la mayoría de los monarcas posteriores, confirmándose definitivamente como la <strong>base de la civilización europea</strong>.</p>
+          </div>
+          <div class="card burgundy">
+            <p><strong>EL FEUDALISMO</strong></p>
+            <p>Las nuevas invasiones habían generado un clima de inseguridad y miedo. Se sabía que los reyes no tenían bastante poder para garantizar la seguridad de sus súbditos, por eso se hizo frecuente acudir a <strong>grandes señores </strong>para recibir protección a cambio de prestar determinados servicios asumiendo el papel de <strong>vasallo</strong>.</p>
+          </div>
+        </div>
+        <div class="pane-image" onclick="openLightbox('presentacion_recursos/image13.png')">
+          <img src="presentacion_recursos/image13.png" alt="Mapa del Imperio Carolingio">
+          <span class="zoom-hint">🔍 Ampliar Mapa</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: 2.1 contexto histórico (La Sociedad Medieval y La Cultura) -->
+    <section class="slide" data-index="10" data-title="2.1 contexto histórico: Sociedad y Cultura">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.1 contexto histórico</strong></h2>
+        </div>
+        <span class="slide-number">10 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.35;">
+          <div class="card blue">
+            <p><strong>LA SOCIEDAD MEDIEVAL</strong></p>
+            <p>La sociedad tenía un <strong>carácter estamental </strong>y estaba fuertemente jerarquizada:</p>
+            <ul class="bu-dot">
+              <li>La <u><strong>nobleza</strong></u> estaba constituida por los grandes señores. A su cabeza estaba el rey. Su función era la guerra, de ahí el calificativo de <em>bellatores</em>.</li>
+              <li>El <u><strong>clero</strong></u> vivía en monasterios y se dedicaba al trabajo, al estudio y a la oración, por lo que a sus miembros se los denominaba <em>oratores</em>.</li>
+              <li>El <u><strong>pueblo</strong></u> estaba formado por burgueses (profesionales que ejercían su oficio amparados por un gremio), villanos (campesinos libres que cultivaban sus propias tierras) y siervos (trabajadores agrícolas que, al carecer de fincas propias, se veían obligados a labrar las de un señor, a las que quedaban jurídicamente vinculados). Al ser el único grupo social que producía se los conocía como <em>laboratores</em>.</li>
+            </ul>
+          </div>
+          <div class="card burgundy">
+            <p><strong>LA CULTURA</strong></p>
+            <p>La cultura se concentraba en los <strong>monasterios</strong>, donde vivían los monjes, hombres que se apartaban del mundo para santificarse mediante la oración y el trabajo. La vida común de estos monjes da pie a <strong>nuevas manifestaciones artísticas </strong>como el <strong>canto gregoriano</strong> o el <strong>estilo románico y gótico</strong>. El fervor religioso hizo que determinados lugares (Roma, Jerusalén, Santiago de Compostela) se convirtieran en importantes <strong>centros de peregrinación</strong>, lo cual fomentó un vigoroso intercambio cultural.</p>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.75;" onclick="openLightbox('presentacion_recursos/image14.png')">
+          <img src="presentacion_recursos/image14.png" alt="Estamentos: Bellatores, Oratores, Laboratores">
+          <span class="zoom-hint">🔍 Ampliar Estamentos</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: 2.1 contexto histórico (El nacimiento de las literaturas nacionales) -->
+    <section class="slide" data-index="11" data-title="2.1 contexto histórico: Literaturas Nacionales">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.1 contexto histórico</strong></h2>
+        </div>
+        <span class="slide-number">11 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.45;">
+          <div class="card blue">
+            <p><strong>EL NACIMIENTO DE LAS LITERATURAS NACIONALES</strong></p>
+            <p>El hecho cultural más importante del comienzo de la Edad Media es la <strong>aparición de las lenguas europeas</strong>: célticas como el irlandés, el galés o el bretón; germánicas como el inglés, el alemán, el danés, o el noruego; o románicas como el francés, el provenzal, el italiano, el portugués, el gallego, el catalán o el castellano, entre otras. Ellas serán la <strong>base de las futuras literaturas nacionales</strong>, que ya ofrecen obras propias a partir del <strong>siglo X</strong>.</p>
+            <ul class="bu-dot" style="margin-top: 4px;">
+              <li>Las <strong>primeras creaciones literarias </strong>nacidas de estas lenguas son <strong>manifestaciones orales </strong>(<u>cantares de gesta</u>, <u>lírica tradicional </u>o <u>representaciones teatrales rudimentarias</u>), de <strong>autor anónimo </strong>y <strong>creación colectiva</strong>.</li>
+              <li>Más tarde surge una <strong>literatura culta</strong>, de <strong>autor conocido </strong>y <strong>transmisión escrita</strong>.</li>
+            </ul>
+          </div>
+          <div class="card burgundy">
+            <p>A diferencia de Roma, que heredó la tradición griega, la literatura medieval, por lo menos al principio, no entronca con los clásicos, sino que surge, más bien, <strong>ligada a los estamentos sociales</strong>:</p>
+            <ol class="bu-alpha" style="margin-top: 4px;">
+              <li>Las hazañas bélicas de los nobles se recogen en los <strong>cantares de gesta </strong>y en los <strong>poemas caballerescos</strong>.</li>
+              <li>La nobleza cortesana genera una <strong>lírica amorosa</strong>, culta, mientras el pueblo llano canta sus sentimientos en sencillas canciones populares.</li>
+              <li>El afán didáctico o satírico crea, en prosa o en verso, <strong>cuentos</strong>, <strong>apólogos</strong> y <strong>narraciones</strong> que gozan de gran popularidad y que deben más a las literaturas orientales que a la griega y la latina.</li>
+              <li>La vida real se representa en un <strong>teatro</strong> incipiente, alejado de las obras clásicas.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.65;" onclick="openLightbox('presentacion_recursos/image15.png')">
+          <img src="presentacion_recursos/image15.png" alt="Manuscrito medieval">
+          <span class="zoom-hint">🔍 Ampliar</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: 2.1 contexto histórico (Cuaderno Actividades) -->
+    <section class="slide" data-index="12" data-title="2.1 contexto histórico: Actividades">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.1 contexto histórico</strong></h2>
+        </div>
+        <span class="slide-number">12 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="activity-container">
+          <div class="activity-img-box" onclick="openLightbox('presentacion_recursos/image16.png')">
+            <img src="presentacion_recursos/image16.png" alt="Cuaderno de Actividades 2.1">
+          </div>
+          <div class="activity-info-box">
+            <span class="activity-badge">TAREA ACADÉMICA</span>
+            <div class="activity-task">
+              <h4>Actividades de Contexto Histórico</h4>
+              <p><strong>Página 83:</strong> ejercicio nº 1 (apartados a, b) — lectura y análisis del fragmento del <em>Cantar de Roldán</em> sobre el vínculo feudo-vasallático y los ideales caballerescos.</p>
+              <p style="margin-top:8px;"><strong>Página 100:</strong> ejercicio nº 61 (apartados a, b, c, d) — comentario del fragmento del <em>Cantar de los nibelungos</em> y comparación con los cantares de gesta.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: 2.2 La literatura épica: la epopeya medieval -->
+    <section class="slide" data-index="13" data-title="2.2 La literatura épica: la epopeya medieval">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.2 La literatura épica: la epopeya medieval</strong></h2>
+        </div>
+        <span class="slide-number">13 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.5;">
+          <div class="card blue">
+            <p><strong>¿Qué es una epopeya?</strong></p>
+            <p>La Edad Media fue la época dorada de la epopeya: poemas narrativos compuestos entre los siglos VIII y XIII, que cuentan las hazañas de héroes movidos por el valor y la lealtad, en los que se entremezclan historia, leyenda y mito.</p>
+          </div>
+          <div class="card burgundy">
+            <p><strong>CARACTERÍSTICAS</strong></p>
+            <ul class="bu-diamond">
+              <li><strong>Literatura oral</strong>. El medio por el que se difunden estas composiciones es el canto y la recitación.</li>
+              <li><strong>Autor anónimo</strong>. El <u>juglar</u> no dispone de un texto fijo, sino que lo crea oralmente para satisfacer las expectativas de un auditorio concreto, lo que exige cierta capacidad para improvisar, para cambiar de tono, tocando los temas que interesan y evitando otros que puedan llegar a aburrir. Por otra parte, el paso del texto de un recitador a otro es causa de <u>continuas variantes</u> en el mismo. En estas circunstancias resulta imposible determinar un autor individual: el cantar se convierte en una obra anónima de autoría colectiva. Finalmente, autores cultos unifican y refunden estos materiales, fijando el texto definitivo que ha llegado manuscrito hasta nosotros.</li>
+              <li><strong>Idealización del héroe</strong>. Representa los valores, aspiraciones y deseos de autoafirmación de una comunidad, de ahí que adquiera un marcado carácter nacional.</li>
+              <li><strong>Lenguaje</strong>. Existe un formulario fijo al que se recurre constantemente y que ayuda a la memorización. Abundan las repeticiones, anticipaciones y comentarios del narrador.</li>
+              <li><strong>Recursos literarios</strong>. Se utiliza el <u>verso asonante</u>. Los <u>epítetos épicos</u> caracterizan al héroe. Los <u>paralelismos</u> y la <u>hipérbole</u> ayudan a construir la historia y a ensalzar al protagonista. El <u>diálogo</u> permite cierta dramatización por parte del juglar y nos acerca a los personajes.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.6;" onclick="openLightbox('presentacion_recursos/epopeya_caballero.png')">
+          <img src="presentacion_recursos/epopeya_caballero.png" alt="Caballero medieval">
+          <span class="zoom-hint">🔍 Ampliar</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: 2.2 La literatura épica: LA ÉPICA Y LOS HÉROES EN EL CINE -->
+    <section class="slide" data-index="14" data-title="2.2 La épica y los héroes en el cine">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.2 La literatura épica: la epopeya medieval</strong></h2>
+        </div>
+        <span class="slide-number">14 / 40</span>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 10px;">
+        <div class="card burgundy" style="flex-shrink: 0;">
+          <p style="font-size: clamp(0.88rem, 1.25vw, 1.12rem); text-align: center;"><strong>LA ÉPICA Y LOS HÉROES EN EL CINE</strong></p>
+        </div>
+        <div class="video-frame" style="flex: 1; min-height: 0;">
+          <video controls preload="metadata">
+            <source src="2.2 La épica y los héroes.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: 2.2 La épica germánica: BEOWULF -->
+    <section class="slide" data-index="15" data-title="2.2 La épica germánica: Beowulf">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.2 La literatura épica: la epopeya medieval</strong></h2>
+        </div>
+        <span class="slide-number">15 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.45;">
+          <div class="card">
+            <p>Las primeras manifestaciones literarias en lengua vulgar que conservamos se produjeron en lugares como <strong>Escandinavia</strong>, <strong>Islandia</strong> o los <strong>reinos germánicos</strong>: zonas en las que el latín había tenido muy escasa presencia. Son las llamadas <u><strong>sagas</strong></u>: narraciones de gran diversidad que van desde la leyenda heroica y la crónica regia hasta los relatos de conquistadores, guerreros y colonos. Estas sagas en prosa, algunas de las cuales se remontan al siglo VIII, generaron una rica tradición de poesía épica cuyas obras maestras son dos poemas anónimos: el sajón <em>Beowulf</em> y el germano <em>Cantar de los nibelungos.</em></p>
+          </div>
+          <div class="card blue">
+            <p><strong>LA ÉPICA GERMÁNICA: <em>BEOWULF</em></strong></p>
+            <ul class="bu-diamond">
+              <li>Poema escrito en torno al año 800. Contiene más de 3000 versos.</li>
+              <li>Se inspira en la figura histórica del rey Beowulf, que luchó contra los francos en el siglo VI.</li>
+              <li>Predominio de elementos fantásticos.</li>
+              <li>Versos largos que se dividen en dos hemistiquios de extensión semejante.</li>
+              <li>No hay rima, pero sí aliteraciones →ritmo acústico.</li>
+            </ul>
+          </div>
+          <div class="card burgundy">
+            <p><strong>Argumento</strong></p>
+            <p>La acción se divide en dos grandes partes:</p>
+            <ul class="bu-dot">
+              <li>En la <u><strong>primera</strong></u>, el joven Beowulf presta su ayuda a Hrodgar, rey de los daneses o jutos, quienes sufrían el ataque de un ser gigantesco llamado Grendel. El guerrero Beowulf vence a esta criatura y, más tarde, también da muerte a la madre del monstruo, que habitaba en el fondo de un lago.</li>
+              <li>En la <u><strong>segunda parte</strong></u>, Beowulf, rey de los <em>gautas</em> (godos) y ya anciano, debe defender su reino del ataque de un dragón. El héroe consigue acabar con la bestia tras una cruenta lucha, pero resulta gravemente herido y muere poco después.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.65;" onclick="openLightbox('presentacion_recursos/image20.png')">
+          <img src="presentacion_recursos/image20.png" alt="Manuscrito de Beowulf">
+          <span class="zoom-hint">🔍 Ampliar Manuscrito</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 16: 2.2 La épica germánica: CANTAR DE LOS NIBELUNGOS (I) -->
+    <section class="slide" data-index="16" data-title="2.2 Cantar de los Nibelungos (I)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.2 La literatura épica: la epopeya medieval</strong></h2>
+        </div>
+        <span class="slide-number">16 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.45;">
+          <div class="card blue">
+            <p><strong>LA ÉPICA GERMÁNICA: <em>CANTAR DE LOS NIBELUNGOS</em></strong></p>
+            <ul class="bu-diamond">
+              <li>El Cantar de los Nibelungos es el poema más conocido de la épica alemana.</li>
+              <li>A mediados del <u>siglo XII </u>circulaba un poema titulado <em>La ruina de los Nibelungos</em>, del que debió servirse el autor anónimo de la versión definitiva, fechada hacia el <strong>año 1200 </strong>y conservada en más de treinta manuscritos.</li>
+              <li>En total, consta de nueve mil quinientos versos agrupados en treinta y nueve cantos.</li>
+            </ul>
+          </div>
+          <div class="card burgundy">
+            <p><strong>Argumento</strong></p>
+            <p>La trama argumental se divide en <strong>dos grandes bloques </strong>de igual extensión:</p>
+            <ul class="bu-dot">
+              <li>la primera cuenta el <u>amor y la muerte del héroe Sigfrido</u>,</li>
+              <li>y la segunda se centra en <u>la venganza de Krimilda</u>.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <p><strong>Primera parte</strong>. Sigfrido, héroe de la estirpe de los Welsas, descendientes directos de Odín, se enamora de la princesa burgundia Krimilda, hermana del rey Gunther. Este le pide, a cambio de la mano de su hermana, que le ayude a conquistar a la indomable Brunilda, reina de Islandia, que hasta el momento ha rechazado a todos sus pretendientes y solo se casará con aquel que la supere en una serie de pruebas de fuerza y habilidad. Sigfrido asume la figura de Gunther, gracias a un yelmo encantado con el que puede transformar su aspecto a voluntad, y vence a Brunilda. Se celebran entonces ambas bodas, pero quince años después Krimilda descubre a Brunilda el engaño de que fue objeto.</p>
+            <p>Esta se venga de Sigfrido haciendo que el guerrero Hagen lo hiera de muerte durante una partida de caza. En su juventud, Sigfrido había matado al dragón Fafnir y se había bañado en su sangre, lo que le hizo invulnerable, salvo en un único punto de su espalda. El traidor, que está al tanto de este secreto, espera a que el héroe se incline a beber en un estanque y lo atraviesa con su lanza.</p>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.6;" onclick="openLightbox('presentacion_recursos/yggdrasil_nibelungos.png')">
+          <img src="presentacion_recursos/yggdrasil_nibelungos.png" alt="Mitología germánica">
+          <span class="zoom-hint">🔍 Ampliar</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 17: 2.2 Cantar de los Nibelungos (II) -->
+    <section class="slide" data-index="17" data-title="2.2 Cantar de los Nibelungos (II)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.2 La literatura épica: la epopeya medieval</strong></h2>
+        </div>
+        <span class="slide-number">17 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.35;">
+          <div class="card burgundy">
+            <p><strong>Segunda parte</strong>. Krimilda, deseosa de venganza, se casa con Atila, rey de los hunos. Doce años más tarde, su hermano Gunther y Hagen visitan la corte de los hunos y Krimilda convence a su esposo para que ataque a los burgundios; ella misma decapita a Hagen. Su venganza, sin embargo, se vuelve en su contra: Hildebrando, caballero de Atila, juzga indigna la muerte de Hagen y la ejecuta por ello.</p>
+          </div>
+          <div class="card blue">
+            <p><strong>Trascendencia de la obra</strong></p>
+            <ul class="bu-diamond">
+              <li>Alterna el <strong>protagonismo de personajes masculinos y femeninos</strong>, a diferencia de otros textos épicos en los que la figura de la mujer apenas tiene relieve.</li>
+              <li>La profunda <strong>caracterización psicológica </strong>recuerda a la de la tragedia griega. Así, por ejemplo, Krimilda evoluciona desde la ternura e ingenuidad juveniles hasta convertirse en símbolo del deseo irreprimible de venganza.</li>
+              <li>Conjuga elementos de las <strong>viejas sagas germánicas </strong>con otros del <strong>mundo cristiano </strong>(culpa y expiación) y de la <strong>cultura cortesano-caballeresca</strong> (torneos, desafíos, amores, fiestas, banquetes...).</li>
+              <li>Impresiona por el <strong>patetismo</strong> de los acontecimientos y <strong>el destino fatal </strong>que cumplen los personajes.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.75;" onclick="openLightbox('presentacion_recursos/image21.png')">
+          <img src="presentacion_recursos/image21.png" alt="Krimilda y Brunilda">
+          <span class="zoom-hint">🔍 Ampliar Grabado</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 18: 2.2 LA ÉPICA ROMÁNICA -->
+    <section class="slide" data-index="18" data-title="2.2 La épica románica">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.2 La literatura épica: la epopeya medieval</strong></h2>
+        </div>
+        <span class="slide-number">18 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.35;">
+          <div class="card blue">
+            <p><strong>LA ÉPICA ROMÁNICA</strong></p>
+            <p>Conjunto de cantares de gesta escritos en lenguas romances.</p>
+            <ul class="bu-diamond">
+              <li>Destacan:
+                <ul class="bu-dot" style="padding-left: 16px;">
+                  <li>Épica francesa</li>
+                  <li>Épica castellana</li>
+                </ul>
+              </li>
+              <li>Los relatos suelen partir de un hecho documentado histórico → defensa de la cristiandad.</li>
+            </ul>
+          </div>
+          <div class="card burgundy">
+            <p>Los cantares suelen agruparse en <strong>ciclos</strong>, conjuntos de relatos que abordan la figura del héroe o de su linaje en diferentes momentos:</p>
+            <ul class="bu-circle" style="margin-top: 4px;">
+              <li>El <strong>ciclo carolingio</strong>: la vida de Carlomagno y sus paladines, los doce pares de Francia.</li>
+              <li>El <strong>ciclo del Cid</strong>: las hazañas de Rodrigo Díaz de Vivar.</li>
+              <li>El <strong>ciclo de los condes de Castilla</strong>: con figuras como Fernán González, el primer conde castellano, o los siete infantes de Lara, víctimas de la venganza que provoca la boda de doña Lambra y Rodrigo de Lara.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.75;" onclick="openLightbox('presentacion_recursos/image22.png')">
+          <img src="presentacion_recursos/image22.png" alt="Épica románica">
+          <span class="zoom-hint">🔍 Ampliar</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 19: 2.2 LA ÉPICA ROMÁNICA: CANTAR DE ROLDÁN -->
+    <section class="slide" data-index="19" data-title="2.2 Cantar de Roldán (I)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.2 La literatura épica: la epopeya medieval</strong></h2>
+        </div>
+        <span class="slide-number">19 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.35;">
+          <div class="card blue">
+            <p><strong>LA ÉPICA ROMÁNICA: <em>CANTAR DE ROLDÁN</em></strong></p>
+            <ul class="bu-diamond">
+              <li>Datado a finales del siglo XI.</li>
+              <li>Escrito en anglonormando.</li>
+              <li>Fijado por un copista llamado Turoldo.</li>
+              <li>Métrica:
+                <ul class="bu-dot" style="padding-left: 16px;">
+                  <li>Más de 4000 versos decasílabos</li>
+                  <li>Rima asonante</li>
+                  <li>Cesura con dos hemistiquios (4+6) → regularidad</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="card">
+            <p>La <strong>técnica del poema</strong>, rica en <u>descripciones</u> y <u>epítetos épicos</u>, tiene un evidente <u>carácter oral</u> y es de una solemne <u>elegancia</u>. Parece probado que el poema circuló en las cortes nobiliarias de Francia e Inglaterra durante mucho tiempo, recitado por juglares para enardecer a los guerreros en vísperas de una batalla.</p>
+          </div>
+          <div class="card burgundy">
+            <p>Se trata de una <strong>recreación literaria</strong> de un <strong>suceso histórico </strong>ocurrido en el año 778: la derrota que los vascones infringieron a las tropas de Carlomagno en el valle pirenaico de Roncesvalles. En el poema, esta derrota se atribuye a los musulmanes, para presentar al emperador y a sus doce pares (los más nobles caballeros de Francia, todos sobrinos suyos) como defensores de la cristiandad.</p>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.7;" onclick="openLightbox('presentacion_recursos/image23.png')">
+          <img src="presentacion_recursos/image23.png" alt="Manuscrito iluminado">
+          <span class="zoom-hint">🔍 Ampliar</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 20: 2.2 Cantar de Roldán (Argumento y Estructura) -->
+    <section class="slide" data-index="20" data-title="2.2 Cantar de Roldán: Argumento y Estructura">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.2 La literatura épica: la epopeya medieval</strong></h2>
+        </div>
+        <span class="slide-number">20 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.4;">
+          <div class="card burgundy">
+            <p><strong>Argumento</strong></p>
+            <p>Marsil, rey de Zaragoza, el único caudillo musulmán que aún no se ha sometido a Carlomagno, le envía un mensaje pidiendo condiciones de paz. El emperador lo acepta y, siguiendo el consejo de Roldán, su mano derecha, encarga a Ganelón, padrastro de este, que lleve a Zaragoza su propuesta. Ganelón obedece, pero, como odia a Roldán, decide traicionar a su patria y pacta con Marsil un ataque a la retaguardia carolingia, mandada, precisamente por el héroe.</p>
+            <p>El ataque se produce en el desfiladero de Roncesvalles y, a pesar de su desesperada defensa, los franceses son aniquilados. Solo un momento antes de morir, Roldán, utilizando el olifante, un cuerno de marfil, se decide a llamar al emperador, que, desesperado, retrocede, ataca y vence al ejército de Marsil. El traidor Ganelón es ajusticiado.</p>
+          </div>
+          <div class="card blue">
+            <p><strong>Estructura</strong></p>
+            <p>El cantar se divide en cuatro partes de desigual amplitud:</p>
+            <ol class="bu-num" style="margin-top: 4px;">
+              <li>La traición de Galeón, adelantada en un sueño a Carlomagno (I-LVII).</li>
+              <li>La derrota, muerte y salvación de Roldán (LVIII-CLXXVI).</li>
+              <li>La victoria de Carlomagno, con el entierro de Roldán y de Oliveros (CLXXVII-CCLXIX).</li>
+              <li>El proceso, castigo y muerte de Ganelón (CCLXX-CCXCI).</li>
+            </ol>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.65;" onclick="openLightbox('presentacion_recursos/image24.png')">
+          <img src="presentacion_recursos/image24.png" alt="Carlomagno">
+          <span class="zoom-hint">🔍 Ampliar Carlomagno</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 21: 2.2 Cantar de Roldán (Singularidades) -->
+    <section class="slide" data-index="21" data-title="2.2 Cantar de Roldán: Singularidades">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.2 La literatura épica: la epopeya medieval</strong></h2>
+        </div>
+        <span class="slide-number">21 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.2;">
+          <div class="card blue">
+            <p><strong>Singularidades</strong></p>
+            <ul class="bu-diamond" style="margin-top: 6px;">
+              <li>Sus <strong>elementos fantásticos</strong>.</li>
+              <li>El <strong>retrato de los personajes</strong>: crea grandiosas semblanzas épicas, donde se resalta el heroísmo, el sacrificio y el honor.</li>
+              <li>Utiliza un <strong>estilo sencillo</strong>, con frases breves y tajantes y léxico preciso, que ofrece los recursos expresivos propios de la épica: epítetos épicos, la atribución de nombres a las espadas, los paralelismos o las reiteraciones y pleonasmos.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.85;" onclick="openLightbox('presentacion_recursos/image25.png')">
+          <img src="presentacion_recursos/image25.png" alt="Escena de la muerte de Roldán">
+          <span class="zoom-hint">🔍 Ampliar Miniatura</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 22: 2.2 Actividades (Cuaderno) -->
+    <section class="slide" data-index="22" data-title="2.2 Actividades de Épica">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.2 La literatura épica: la epopeya medieval</strong></h2>
+        </div>
+        <span class="slide-number">22 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="activity-container">
+          <div class="activity-img-box" onclick="openLightbox('presentacion_recursos/image26.png')">
+            <img src="presentacion_recursos/image26.png" alt="Cuaderno de Actividades 2.2">
+          </div>
+          <div class="activity-info-box">
+            <span class="activity-badge">TAREA ACADÉMICA</span>
+            <div class="activity-task">
+              <h4>Actividades de Literatura Épica</h4>
+              <p><strong>Página 83:</strong> ejercicios nº 2 y nº 14.</p>
+              <p style="margin-top:6px;"><strong>Página 84:</strong> ejercicio nº 16 (apartados a, b, c, d, e) — análisis del <em>Cantar de los nibelungos</em> (aventura XVI, muerte de Sigfrido).</p>
+              <p style="margin-top:6px;"><strong>Página 84:</strong> ejercicio nº 17 (apartados a, b, c, d, e, f) — análisis del <em>Cantar de Roldán</em> (batalla de Roncesvalles y el olifante).</p>
+              <p style="margin-top:6px;"><strong>Actividad <em>Beowulf</em>:</strong> material complementario en <strong>Aules</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 23: 2.3 La literatura CABALLERESCA -->
+    <section class="slide" data-index="23" data-title="2.3 La literatura caballeresca">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.3 La literatura CABALLERESCA</strong></h2>
+        </div>
+        <span class="slide-number">23 / 40</span>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 12px; justify-content: space-between;">
+        <div class="card blue" style="flex: 1.15; display: flex; flex-direction: column; justify-content: center; gap: clamp(6px, 1.1vh, 12px); padding: clamp(12px, 2vh, 22px) clamp(18px, 2.2vw, 28px);">
+          <p style="font-size: clamp(0.92rem, 1.24vw, 1.14rem); line-height: 1.48;">En el siglo XII surge un tipo de narración culta, en verso → <strong><em>roman courtois</em></strong>(novela cortés).</p>
+          <p style="font-size: clamp(0.88rem, 1.18vw, 1.08rem); line-height: 1.5;">La decadencia de la épica oral no acabó con las hazañas caballerescas. La naciente <strong>nobleza</strong> ansiaba verse reflejada en las artes de muy diversos modos. Protagonista de los poemas épicos anónimos, cuando su poder estuvo afianzado quiso ser también <strong>protagonista</strong> y <strong>destinataria</strong> de otro tipo de obras ya no siempre anónimas, y pensadas más para la lectura en voz alta que para el recitado juglaresco, lo cual indica la existencia de un público letrado. Se trata de literatura escrita para <strong>una minoría selecta. </strong>Así nacieron las <strong>novelas de caballerías</strong>.</p>
+          <p style="font-size: clamp(0.88rem, 1.18vw, 1.08rem); line-height: 1.5;">A diferencia de los personajes que protagonizan la epopeya, el héroe de los poemas caballerescos combate, además de por su pueblo, por su religión o por su rey, por su propio <u>honor</u> y por su <u>dama</u>.</p>
+        </div>
+        <div class="comp-table-wrap" style="flex: 0.75; height: auto; max-width: 92%; align-self: center;">
+          <table class="comp-table" style="font-size: clamp(0.6rem, 0.78vw, 0.74rem);">
+            <thead>
+              <tr>
+                <th style="width: 18%; padding: 3px 8px;"></th>
+                <th style="width: 41%; padding: 3px 8px;"><strong>LA EPOPEYA MEDIEVAL</strong></th>
+                <th style="width: 41%; padding: 3px 8px;"><strong>LA LITERATURA CABALLERESCA</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="row-cat" style="padding: 2px 8px;"><strong>Origen</strong></td>
+                <td style="padding: 2px 8px;"><strong>Popular</strong>: anónima, transmisión oral.</td>
+                <td style="padding: 2px 8px;"><strong>Culto</strong>: autor individual, transmisión escrita.</td>
+              </tr>
+              <tr>
+                <td class="row-cat" style="padding: 2px 8px;"><strong>Modo de expresión</strong></td>
+                <td style="padding: 2px 8px;"><strong>Verso</strong> irregular, largo, con rima asonante.</td>
+                <td style="padding: 2px 8px;"><strong>Verso</strong> regular (octosílabo o eneasílabo), con pareados de rima consonante.</td>
+              </tr>
+              <tr>
+                <td class="row-cat" style="padding: 2px 8px;"><strong>Temas</strong></td>
+                <td style="padding: 2px 8px;"><strong>Hazañas bélicas</strong> con grandes batallas en las que se decide el destino de un pueblo.</td>
+                <td style="padding: 2px 8px;"><strong>Aventuras</strong> que exigen la superación de pruebas que forjan el carácter del héroe.</td>
+              </tr>
+              <tr>
+                <td class="row-cat" style="padding: 2px 8px;"><strong>Protagonista</strong></td>
+                <td style="padding: 2px 8px;"><strong>Héroe-caudillo en el que se proyectan los valores e ideales de una nación.</strong></td>
+                <td style="padding: 2px 8px;"><strong>Héroe-caballero</strong> que actúa en solitario por motivos personales.</td>
+              </tr>
+              <tr>
+                <td class="row-cat" style="padding: 2px 8px;"><strong>Personajes femeninos</strong></td>
+                <td style="padding: 2px 8px;"><strong>Sin importancia</strong> en la acción.</td>
+                <td style="padding: 2px 8px;"><strong>Elemento fundamental</strong> de la acción.</td>
+              </tr>
+              <tr>
+                <td class="row-cat" style="padding: 2px 8px;"><strong>Propósito del héroe</strong></td>
+                <td style="padding: 2px 8px;">Garantizar la <strong>supervivencia de su pueblo</strong>, conquistar o reparar el <strong>honor</strong>.</td>
+                <td style="padding: 2px 8px;">Alcanzar la <strong>perfección moral</strong> y el <strong>reconocimiento social</strong>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 24: 2.3 La literatura CABALLERESCA (La materia de la Antigüedad) -->
+    <section class="slide" data-index="24" data-title="2.3 La materia de la Antigüedad">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.3 La literatura CABALLERESCA</strong></h2>
+        </div>
+        <span class="slide-number">24 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.45;">
+          <div class="card blue">
+            <p><strong>LA MATERIA DE LA ANTIGÜEDAD</strong></p>
+            <p>En el <strong>siglo XII</strong> aparecen en <strong>Francia</strong> cuatro obras narrativas</p>
+            <ul class="bu-diamond">
+              <li>destinadas a la <u>lectura</u></li>
+              <li>escritas en <u>pareados</u> octosílabos monorrimos</li>
+              <li>recogen <u>temas</u> y <u>personajes</u> de la Antigüedad y los adaptan al gusto lector de la época</li>
+            </ul>
+          </div>
+          <div class="card burgundy">
+            <p><strong>Obras:</strong></p>
+            <ul class="bu-arrow">
+              <li><strong>Roman de Tebas </strong>(1150), síntesis de las leyendas griegas sobre esta ciudad.</li>
+              <li><strong>Roman d’Eneas </strong>(1160) transforma la <em>Eneida</em> de Virgilio en una novela de aventuras y amores, añadiendo elementos maravillosos y fantásticos (cocodrilos, monstruos marinos, piedras de sorprendentes cualidades) que influyen en otras obras de la época.</li>
+              <li><strong>Roman de Troya </strong>(1170), escrito por Benoit de Sanint-Maure, traslada a la época medieval los amores, combates e incidencias de la guerra de Troya, dotándola de matices caballerescos.</li>
+              <li><strong>Roman d’Alexandre </strong>(1170), elaborado por Lambert le Tort, se centra en la vida de Alejandro Magno y recrea las hazañas del joven rey, sus conquistas y viajes o la guerra contra las amazonas, con episodios fantásticos y fabulosos en los que aparecen aspectos de la galantería de la época o del amor cortés.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.55;" onclick="openLightbox('presentacion_recursos/geoffrey_monmouth.png')">
+          <img src="presentacion_recursos/geoffrey_monmouth.png" alt="Literatura caballeresca">
+          <span class="zoom-hint">🔍 Ampliar</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 25: 2.3 La materia de Bretaña y El ciclo artúrico -->
+    <section class="slide" data-index="25" data-title="2.3 La materia de Bretaña: El ciclo artúrico">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.3 La literatura CABALLERESCA</strong></h2>
+        </div>
+        <span class="slide-number">25 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.05;">
+          <div class="card blue">
+            <p><strong>LA MATERIA DE BRETAÑA </strong></p>
+            <p>Se basa en mitos bretones y leyendas de origen celta. Se distingue entre el <strong>ciclo artúrico</strong> y la <strong>leyenda de Tristán e Iseo</strong>.</p>
+          </div>
+          <div class="card burgundy">
+            <p><strong>EL CICLO ARTÚRICO</strong></p>
+            <p>El eje central del ciclo artúrico es la <strong>vida del rey Arturo</strong> y las aventuras de los caballeros de la Mesa redonda: Perceval (Parsifal), Lancelot (Lanzarote), Galahad, Ywain, Gawain, etc.</p>
+            <p>El autor que dio forma definitiva a esta leyenda es <strong>Chrétien de Troyes </strong>(1135-1190), buen conocedor del latín, y especialmente de Ovidio y escritor al servicio de los condes de Champaña.</p>
+            <p>La <strong>historia</strong> que los articula, y que se va contando a lo largo de toda la serie, es la historia del rey Arturo, casado con Ginebra, quien se enamorará de Lancelot al tiempo que otros caballeros de Camelot viven sus propias aventuras galantes hasta que se comprometen en la búsqueda del grial, que suele identificarse con el cáliz de la última cena de Jesús o la copa que recogió su sangre cuando fue crucificado.</p>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.95;" onclick="openLightbox('presentacion_recursos/image31.png')">
+          <img src="presentacion_recursos/image31.png" alt="El ciclo artúrico">
+          <span class="zoom-hint">🔍 Ampliar Ciclo Artúrico</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 26: 2.3 La leyenda de Tristán e Iseo -->
+    <section class="slide" data-index="26" data-title="2.3 La leyenda de Tristán e Iseo">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.3 La literatura CABALLERESCA</strong></h2>
+        </div>
+        <span class="slide-number">26 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.4;">
+          <div class="card blue">
+            <p><strong>LA LEYENDA DE TRISTÁN E ISEO</strong></p>
+            <p>En cuanto a la leyenda de Tristán e Iseo, es el prototipo de la <strong>pasión amorosa</strong>, <strong>incontrolable</strong> y <strong>trágica</strong>. Tristán e Iseo toman un bebedizo que les hace enamorarse, a pesar de que ella es la prometida del rey Marco de Cornualles y él es su sobrino.</p>
+            <p>La obra, bella y llena de emoción, recrea las tradiciones de la cultura celta, aunque también recupera motivos clásicos (mito de Píramo y Tisbe o historia de Paris).</p>
+          </div>
+          <div class="card burgundy">
+            <p><strong>Argumento</strong></p>
+            <p>Tristán, un valeroso caballero, e Iseo, la rubia esposa del rey de Cornualles, se enamoran después de tomar, contra su voluntad, un filtro mágico que une a quienes lo beben. La joven lucha entre la fidelidad a su marido y la pasión amorosa por Tristán, que finalmente se aleja de la corte.</p>
+            <p>Lejos de su amada, llega a la Pequeña Bretaña, donde la hija del rey, también llamada Iseo, «de las blancas manos», se enamora de él. Cuando en una aventura caballeresca se halla herido de muerte, llama en su ayuda a Iseo «la rubia», porque solo ella puede salvarlo.</p>
+            <p>La joven acude en un barco de blancas velas, como habían concertado, pero Iseo, «de las blancas manos», movida por los celos, dice a Tristán que las velas son negras, lo que significa que Iseo «la rubia» no viene en el barco. Tristán muere de dolor e Iseo «la rubia» llega tarde, solo para expirar junto al cadáver de su amado.</p>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.6;" onclick="openLightbox('presentacion_recursos/tristan_iseo.png')">
+          <img src="presentacion_recursos/tristan_iseo.png" alt="Tristán e Iseo">
+          <span class="zoom-hint">🔍 Ampliar</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 27: 2.3 Actividades (Cuaderno) -->
+    <section class="slide" data-index="27" data-title="2.3 Actividades Caballeresca">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.3 La literatura CABALLERESCA</strong></h2>
+        </div>
+        <span class="slide-number">27 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="activity-container">
+          <div class="activity-img-box" onclick="openLightbox('presentacion_recursos/image32.png')">
+            <img src="presentacion_recursos/image32.png" alt="Cuaderno de Actividades 2.3">
+          </div>
+          <div class="activity-info-box">
+            <span class="activity-badge">TAREA ACADÉMICA</span>
+            <div class="activity-task">
+              <h4>Actividades de Literatura Caballeresca</h4>
+              <p><strong>Página 89:</strong> ejercicio nº 30 (apartados a, b, c, d, e, f) — lectura y comentario comparado de los fragmentos de <em>Tristán</em> (Gottfried von Strassburg) y <em>El caballero de la carreta / Lanzarote</em> (Chrétien de Troyes).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 28: 2.4 La LÍRICA MEDIEVAL: LA CANCIÓN DE MUJER -->
+    <section class="slide" data-index="28" data-title="2.4 La lírica medieval: La canción de mujer">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.4 La LÍRICA MEDIEVAL</strong></h2>
+        </div>
+        <span class="slide-number">28 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.35;">
+          <div class="card burgundy">
+            <p><strong>LA CANCIÓN DE MUJER</strong></p>
+            <ul class="bu-diamond" style="margin-top: 6px;">
+              <li>La canción de mujer, unida al baile y al canto coral, es uno de los ejemplos más bellos de la <strong>primitiva lírica europea de carácter popular</strong>.</li>
+              <li>Se trata de <strong>composiciones breves</strong>, <strong>sencillas</strong> tanto en el plano temático como en el formal, donde una joven, la voz poética, realiza una serie de confidencias a su madre, a sus hermanas o a la misma naturaleza, en las que se queja por la ausencia o el desdén del amado.</li>
+              <li>Las <strong>escenas</strong> que se describen, cargadas de emoción y dramatismo, suelen recurrir a <u>elementos simbólicos</u> como las aguas, los ciclos naturales o los animales para expresar la fuerza de la pasión, reflexionar sobre la alternancia del placer y el dolor en la vida o caracterizar al amado.</li>
+              <li>La canción de mujer se desarrolló entre los <strong>siglos XI y XIII</strong> en la lírica anglosajona (<em>Libro de Exeter</em>), la alemana (<em>Frauenlieder</em>), la francesa (<em>refrains</em> y <em>chansons<strong> de </strong>toile</em>), la italiana (<em>rime</em>), la mozárabe (<em>jarchas</em>), la galaicoportuguesa (<em>cantigas</em>) o la castellana (<em>villancicos</em>).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.7;" onclick="openLightbox('presentacion_recursos/image34.png')">
+          <img src="presentacion_recursos/image34.png" alt="La canción de mujer">
+          <span class="zoom-hint">🔍 Ampliar</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 29: 2.4 La LÍRICA MEDIEVAL: LA POESÍA PROVENZAL -->
+    <section class="slide" data-index="29" data-title="2.4 La lírica medieval: La poesía provenzal">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.4 La LÍRICA MEDIEVAL</strong></h2>
+        </div>
+        <span class="slide-number">29 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-image" style="flex: 0.68;" onclick="openLightbox('presentacion_recursos/image35.png')">
+          <img src="presentacion_recursos/image35.png" alt="Poesía provenzal y amor cortés">
+          <span class="zoom-hint">🔍 Ampliar Miniatura</span>
+        </div>
+        <div class="pane-text" style="flex: 1.32;">
+          <div class="card blue">
+            <p><strong>LA POESÍA PROVENZAL</strong></p>
+            <p>Durante los <strong>siglos XII</strong> y <strong>XIII</strong> surge en las <u>cortes del sureste francés</u> un tipo de poesía culta en <u>lengua provenzal</u> compuesta para ser cantada al son de una melodía.</p>
+            <p>El autor de estas composiciones, el <strong>trovador</strong>, es un noble, un príncipe o incluso un rey que, por diversión, escribe los versos y la música de sus poemas.</p>
+            <p>Para facilitar la transmisión y el aprendizaje de los textos se recurre a <strong>cancioneros</strong>, libros en los que se recogen las obras de uno o varios trovadores, junto con la notación musical que permite cantarlas. Los más antiguos pertenecen a la segunda mitad del siglo XIII. Algunos ofrecen también interesantes textos en prosa con datos biográficos del trovador (las vidas) o comentarios a algún poema concreto (<em>las <strong>razós</strong></em>).</p>
+          </div>
+          <div class="card burgundy">
+            <p>El <strong>tema</strong> de la lírica provenzal es el <u><strong>amor cortés</strong></u>. Se trata de un amor entendido como servicio que el caballero (vasallo) presta a una dama (señora) adornada de una singular belleza, que suele adaptarse a una descripción tópica: cabellos rubios, ojos y piel claros y manos delicadas. Pertenece a una clase superior (amarla es una osadía) y se muestra inicialmente desdeñosa e incluso cruel, por lo que el enamorado experimenta un profundo sufrimiento. Además, es un amor clandestino, pues la dama está casada, y discreto, ya que no debe ser descubierto por el marido (el celoso) o por los aduladores de este. A pesar de todo, sus sentimientos purifican y elevan al enamorado, que se perfecciona para merecer a la dama.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 30: 2.4 Actividades (Cuaderno) -->
+    <section class="slide" data-index="30" data-title="2.4 Actividades Lírica">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.4 La LÍRICA MEDIEVAL</strong></h2>
+        </div>
+        <span class="slide-number">30 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="activity-container">
+          <div class="activity-img-box" onclick="openLightbox('presentacion_recursos/image36.png')">
+            <img src="presentacion_recursos/image36.png" alt="Cuaderno de Actividades 2.4">
+          </div>
+          <div class="activity-info-box">
+            <span class="activity-badge">TAREA ACADÉMICA</span>
+            <div class="activity-task">
+              <h4>Actividades de Lírica Medieval</h4>
+              <p><strong>Página 93:</strong> ejercicio nº 33 (apartados a, b, c) — análisis de los poemas de Bernart de Ventadorn, Guillermo de Aquitania, Dante Alighieri (<em>Divina Comedia</em>) y Francesco Petrarca (<em>Cancionero</em>) en torno al tópico del amor cortés y el <em>dolce stil novo</em>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 31: 2.5 El cuento medieval -->
+    <section class="slide" data-index="31" data-title="2.5 El cuento medieval">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.5 El cuento medieval</strong></h2>
+        </div>
+        <span class="slide-number">31 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.45;">
+          <div class="card blue">
+            <p><strong>¿Qué es un cuento?</strong></p>
+            <p>Los cuentos son narraciones breves en prosa que relatan una <strong>acción sencilla</strong>, normalmente dividida en <strong>tres partes</strong>: inicio, nudo y desenlace. Suelen estar protagonizados por <strong>pocos personajes</strong>, cuya personalidad no experimenta grandes cambios, y el lugar y el tiempo no suelen detallarse con precisión.</p>
+          </div>
+          <div class="card burgundy">
+            <p><strong>Los cuentos medievales</strong></p>
+            <ul class="bu-dot">
+              <li>Los primeros testimonios datan del <strong>s. XIII</strong>.</li>
+              <li>Cuentos de carácter <strong>didáctico</strong> y <strong>moral</strong>.</li>
+              <li>Muy cultivados tanto en el <strong>mundo musulmán </strong>como en la <strong>Europa cristiana</strong>.</li>
+              <li>Pervivencia gracias a las grandes colecciones de relatos medievales:
+                <ul class="bu-circle">
+                  <li><strong>Variedad de temas</strong>: maravillosos, realistas, de amores puros y no tan puros, humorísticos, de aventuras, etc.</li>
+                  <li>El <strong>argumento</strong> de algunos relatos procede de fuentes diversas (clásicas, hindúes, árabes, bíblicas, folclóricas, milagros de santos o de la Virgen, <em>fabliaux</em>), pero con ellos se alternan otros originales de sus autores.</li>
+                  <li>Los autores de estas obras crean un <strong>marco narrativo </strong>o hilo conductor de los relatos que da unidad al libro.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="card">
+            <p>Estas narraciones solían proceder de <strong>dos fuentes</strong>:</p>
+            <ul class="bu-dot">
+              <li><strong>Fábulas grecolatinas</strong>: protagonizadas por animales y escritas, en su mayoría, por Esopo, se divulgaron a través de colecciones de relatos.</li>
+              <li><strong>Tradición oriental</strong>: el contacto con el mundo árabe a través de la península ibérica difundió diversas colecciones de cuentos entre las que destaca Calila e Dimna (1251).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.55;" onclick="openLightbox('presentacion_recursos/narrativa_miniatura.png')">
+          <img src="presentacion_recursos/narrativa_miniatura.png" alt="Narrativa medieval">
+          <span class="zoom-hint">🔍 Ampliar</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 32: 2.5 El cuento medieval: LAS MIL Y UNA NOCHES -->
+    <section class="slide" data-index="32" data-title="2.5 Las mil y una noches">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.5 El cuento medieval</strong></h2>
+        </div>
+        <span class="slide-number">32 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.15;">
+          <div class="card blue" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+            <p><strong>LAS MIL Y UNA NOCHES</strong></p>
+            <p>La obra más famosa, y una de las más célebres de la literatura universal, es la recopilación de cuentos <em>Las mil y una noches </em>tomada de la literatura árabe.</p>
+            <p>Es una compilación de relatos con <strong>intención lúdica</strong>, a diferencia de la tendencia europea que solía dar un enfoque pedagógico a los cuentos. Recoge una gran variedad de historias de aventuras, magia, bandidos, amores y en bastantes ocasiones con un notable componente sensual y erótico.</p>
+            <p>La obra no fue conocida en Europa hasta el <strong>s. XVIII</strong>, a partir de una traducción al francés, aunque su autoría data de fines del s. XIV.</p>
+          </div>
+          <div class="card burgundy" style="flex: 1.25; display: flex; flex-direction: column; justify-content: center;">
+            <p><strong>Argumento</strong></p>
+            <p>Su marco narrativo contiene la historia del sultán <em>Shahriar</em>, que ha sido engañado por su esposa y decide vengar esa infidelidad matando una mujer cada día. Así sucede hasta que le corresponde el turno a la joven <em>Sherezade</em>, (<em>Shahrasad</em>), hija del visir, quien consigue evitar la muerte gracias a una estratagema: todas las noches relata al sultán una historia que deja inacabada, por lo que es perdonada para continuarla a la noche siguiente. Enlazando un cuento con otro, Sherezade sobrevive durante mil y una noches (número que simboliza la eternidad). Así la muchacha entretiene la atención del rey durante mil y una noches. En recompensa, el rey, al que ya había dado tres hijos, reconoce sus servicios, interrumpe su costumbre cruel y la hace su esposa favorita. Finalmente, se le perdona la vida.</p>
+          </div>
+        </div>
+        <div class="pane-text" style="flex: 0.95;">
+          <div class="card" style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: clamp(14px, 2.2vh, 24px) clamp(16px, 2vw, 24px);">
+            <p><strong>Características</strong></p>
+            <p style="margin-top: 4px;">• <u>Trama central que actúa como marco</u>: Sherezade se libra de la muerte a manos del rey gracias a contarle cuentos que deja interrumpidos al amanecer para poder seguir con vida a la noche siguiente.</p>
+            <p>• <u>Técnica de la suspensión</u>: interrumpir los relatos en un punto álgido de la acción hace que aumente el interés del rey (y de los lectores) por saber cómo acaba la historia.</p>
+            <p>• <u>Estructura de “cajas chinas</u>”: diversos niveles de profundidad, pues dentro de las historias a su vez se narran otras historias.</p>
+            <p>• <u>Acumulación de diversos relatos </u>de muy diversas procedencias: árabes, persas, indios, egipcios...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 33: 2.5 LOS CUENTOS DE CANTERBURY (I) -->
+    <section class="slide" data-index="33" data-title="2.5 Los cuentos de Canterbury (I)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.5 El cuento medieval</strong></h2>
+        </div>
+        <span class="slide-number">33 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.35;">
+          <div class="card blue">
+            <p><strong>LOS CUENTOS DE CANTERBURY</strong></p>
+            <ul class="bu-diamond">
+              <li><strong>Autor</strong>: Geoffrey Chaucer (1340-1400).</li>
+              <li>Ocupó distintos cargos en la administración y cumplió misiones diplomáticas y militares durante la guerra de los Cien Años que lo llevaron a Francia, Flandes o Italia.</li>
+              <li>Traductor de obras francesas y latina.</li>
+              <li><strong>Colección de relatos</strong>, la mayoría en verso, escritos de forma independiente antes de 1380 y agrupados luego dentro de un marco narrativo que sirve de hilo conductor y les confiere unidad.</li>
+            </ul>
+          </div>
+          <div class="card burgundy">
+            <p><strong>Argumento</strong></p>
+            <p>El autor nos sitúa en la posada de El Tabardo, donde ha hecho un alto para descansar de su peregrinación hacia la abadía de Santo Tomás de Canterbury. Allí se encuentra con otros veintinueve peregrinos: un caballero, con su hijo, su escudero y su asistente; una priora y un fraile mendicante; un mercader; un estudiante de Oxford y diversos representantes de oficios -mercero, carpintero, tejedor, tintorero, tapicero, entre otros- a los que retrata en el prólogo.</p>
+            <p>Todos aceptan la invitación del hostelero, a quien se le ocurre que, para entretenerse en el camino, cada uno de ellos narre dos cuentos a la ida y dos a la vuelta; el mismo hostelero será el árbitro y juez, y premiará con una cena al narrador del mejor de los cuentos.</p>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.7;" onclick="openLightbox('presentacion_recursos/image39.jpeg')">
+          <img src="presentacion_recursos/image39.jpeg" alt="Los cuentos de Canterbury">
+          <span class="zoom-hint">🔍 Ampliar Miniatura</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 34: 2.5 Los cuentos de Canterbury (Características) -->
+    <section class="slide" data-index="34" data-title="2.5 Los cuentos de Canterbury: Características">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.5 El cuento medieval</strong></h2>
+        </div>
+        <span class="slide-number">34 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.35;">
+          <div class="card blue">
+            <p><strong>Características</strong></p>
+            <ul class="bu-diamond" style="margin-top: 6px;">
+              <li>La obra solo incluye <strong>veintitrés cuentos</strong>, relatos originales (no adaptaciones de obras anteriores).</li>
+              <li>Divertida visión del <strong>mundo burgués </strong>de la época.</li>
+              <li><strong>Personajes verosímiles </strong>gracias a sus detalladas descripciones físicas, psicológicas y sociales.</li>
+              <li>Las historias presentan un amplio cuadro de la <strong>sociedad inglesa</strong>.</li>
+              <li>El <strong>tono</strong> y el <strong>lenguaje</strong> de los cuentos se adaptan a las peculiaridades de cada narrador.</li>
+              <li>Los <strong>temas</strong> son muy variados, Chaucer introduce leyendas cortesanas, relatos de aventuras novelescas, fábulas de animales, sermones e incluso algunos <em>fabliaux</em> desvergonzados y obscenos.</li>
+              <li>La obra está escrita en un inglés medieval ameno y brillante que contribuyó enormemente a su afianzamiento como <strong>lengua literaria</strong>.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.65;" onclick="openLightbox('presentacion_recursos/image40.png')">
+          <img src="presentacion_recursos/image40.png" alt="Geoffrey Chaucer">
+          <span class="zoom-hint">🔍 Ampliar Retrato</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 35: 2.5 Actividades (Cuaderno) -->
+    <section class="slide" data-index="35" data-title="2.5 Actividades Cuento Medieval">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.5 El cuento medieval</strong></h2>
+        </div>
+        <span class="slide-number">35 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="activity-container">
+          <div class="activity-img-box" onclick="openLightbox('presentacion_recursos/image41.png')">
+            <img src="presentacion_recursos/image41.png" alt="Cuaderno de Actividades 2.5">
+          </div>
+          <div class="activity-info-box">
+            <span class="activity-badge">TAREA ACADÉMICA</span>
+            <div class="activity-task">
+              <h4>Actividades del Cuento Medieval</h4>
+              <p><strong>Lectura:</strong> fragmentos seleccionados de <em>Las mil y una noches</em> (material disponible en la plataforma <strong>Aules</strong>).</p>
+              <p style="margin-top:8px;"><strong>Página 100:</strong> ejercicio nº 76 (apartados a, b, c, d, e) — lectura y comentario de los relatos de Geoffrey Chaucer (<em>Los cuentos de Canterbury</em>) y Giovanni Boccaccio (<em>Decamerón</em>).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 36: 2.6 El teatro medieval. Origen y géneros -->
+    <section class="slide" data-index="36" data-title="2.6 El teatro medieval. Origen y géneros">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.6 El teatro medieval. Origen y géneros</strong></h2>
+        </div>
+        <span class="slide-number">36 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.35;">
+          <div class="card blue">
+            <p>El teatro medieval no entronca con el teatro clásico, sino que aparece, de forma semejante a lo que ocurrió en la antigua Grecia, <strong>ligado a las celebraciones religiosas</strong>, en este caso, a la liturgia cristiana:</p>
+            <ul class="bu-diamond" style="margin-top: 5px;">
+              <li>El punto de partida es un <strong>diálogo en latín </strong>entre los acólitos y el celebrante en el <strong>presbiterio</strong> de la Iglesia, con el fin de dramatizar ceremonias de cultos en las fiestas de Navidad o Semana Santa. Estos diálogos reciben el nombre de <strong>tropos</strong>.</li>
+              <li>Ese diálogo dramático se traslada posteriormente a la <strong>nave</strong> del templo, con participación de seglares y mezcla de elementos no litúrgicos. Existen testimonios del siglo XI que explican cómo se dramatizaba la adoración de los pastores al niño Jesús con motivo de las fiestas de Navidad.</li>
+              <li>En el <strong>siglo XII </strong>y ya en lengua vulgar, estos rudimentarios dramas litúrgicos se realizan en el <strong>atrio</strong> de la iglesia. Para que resulten más atractivos a los fieles, se incorporan elementos fantásticos e incluso cómicos.</li>
+              <li>Por fin, cuando los elementos profanos adquieren más importancia que el componente litúrgico, el teatro se desliga de la iglesia y la representación se traslada a la <strong>plaza pública</strong>.</li>
+            </ul>
+          </div>
+          <div class="card burgundy">
+            <p>Así pues, las obras que se representan en la Edad Media presentan un <strong>doble carácter</strong>, religioso y profano. Al primero pertenecen los <strong>misterios</strong> y los <strong>milagros</strong>; al segundo, las <strong>farsas</strong> y las <strong>danzas de la muerte</strong>.</p>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.75; flex-direction: row; gap: 8px;">
+          <img src="presentacion_recursos/image46.png" alt="Presbiterio" style="max-width: 48%; max-height: 96%;" onclick="openLightbox(this.src)">
+          <img src="presentacion_recursos/image47.png" alt="Planta del templo" style="max-width: 48%; max-height: 96%;" onclick="openLightbox(this.src)">
+          <span class="zoom-hint">🔍 Ampliar Planta</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 37: 2.6 TEATRO RELIGIOSO MEDIEVAL -->
+    <section class="slide" data-index="37" data-title="2.6 Teatro religioso medieval">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.6 El teatro medieval. Origen y géneros</strong></h2>
+        </div>
+        <span class="slide-number">37 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.4;">
+          <div class="card blue">
+            <p><strong>TEATRO RELIGIOSO MEDIEVAL</strong></p>
+            <p>El teatro religioso, en el que se permitía la <strong>participación de los clérigos </strong>ofrece dos tipos de representación:</p>
+            <ul class="bu-diamond" style="margin-top: 5px;">
+              <li>Los <strong>misterios</strong>, pequeñas piezas dramáticas en las que se representan <u>episodios de la Biblia </u>(especialmente acontecimientos de la vida de Cristo: nacimiento, pasión, muerte, resurrección) o vidas de santos. Lo más emotivos corresponden a la fiesta de Navidad, con aportaciones de gran valor dramático, como los pastores o los Reyes Magos; la representación de la pasión y muerte de Jesucristo en Pascua ocupaba varios días, exigía el concurso de numerosos actores y la disposición de distintos escenarios al aire libre, lo que procurada un espectáculo mucho más dinámico. Al ciclo de Navidad pertenece el <strong>Auto de los Reyes Magos</strong>, de fines del siglo XII, una obra pobre desde el punto de vista dramático en la que domina el monólogo sobre el diálogo. El <strong>Misteri d’Elx</strong>, del siglo XV, es una curiosísima reliquia del teatro catalán medieval. Tiene como tema la muerte de la Virgen y su gloriosa asunción a los cielos.</li>
+              <li>Los <strong>milagros</strong> son textos de menor extensión que los misterios y se basan en <u>leyendas piadosas </u>sobre pecadores salvados de los infiernos por intercesión de la Virgen. El primer texto conocido es el <strong>Milagro de Teófilo </strong>(hasta 1260), del escritor francés <em>Rutebeuf</em>.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.65;" onclick="openLightbox('presentacion_recursos/image48.png')">
+          <img src="presentacion_recursos/image48.png" alt="Misteri d'Elx">
+          <span class="zoom-hint">🔍 Ampliar Misteri d'Elx</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 38: 2.6 TEATRO RELIGIOSO MEDIEVAL (Vídeo El Auto de los Reyes Magos) -->
+    <section class="slide" data-index="38" data-title="2.6 Vídeo: El Auto de los Reyes Magos">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.6 El teatro medieval. Origen y géneros</strong></h2>
+        </div>
+        <span class="slide-number">38 / 40</span>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 10px;">
+        <div class="card burgundy" style="flex-shrink: 0;">
+          <p style="font-size: clamp(0.88rem, 1.25vw, 1.12rem); text-align: center;"><strong>TEATRO RELIGIOSO MEDIEVAL</strong></p>
+        </div>
+        <div class="video-frame" style="flex: 1; min-height: 0;">
+          <video controls preload="metadata">
+            <source src="2.6 El auto de los Reyes Magos.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 39: 2.6 LAS DANZAS DE LA MUERTE -->
+    <section class="slide" data-index="39" data-title="2.6 Las danzas de la muerte">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>2.6 El teatro medieval. Origen y géneros</strong></h2>
+        </div>
+        <span class="slide-number">39 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.2;">
+          <div class="card burgundy">
+            <p><strong>LAS DANZAS DE LA MUERTE</strong></p>
+            <p>Las danzas de la muerte, generalizadas en la Europa de <strong>siglo XIV</strong>, son representaciones artísticas y literarias en las que figura una <strong>danza macabra </strong>integrada por personajes de diferente condición, jerarquía o edad que, interpelados por la muerte, se ven empujados a entrar en su fúnebre cortejo.</p>
+          </div>
+          <div class="card blue">
+            <p>La aparición de estas obras, fruto del sentido religioso de la Edad Media, puede deberse a dos <strong>causas</strong>:</p>
+            <ul class="bu-diamond" style="margin-top: 4px;">
+              <li>Las epidemias y pestes que asolaban la Europa medieval y no respetaban ni a los siervos ni a los nobles ni a los reyes, arrasando por igual la aldea, el castillo o el burgo.</li>
+              <li>La vena mordaz y crítica que, partiendo de una postura inconformista empieza a aparecer en la creación literaria.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.85; gap: 6px;" onclick="openLightbox('presentacion_recursos/image50.png')">
+          <img src="presentacion_recursos/image51.png" alt="Estructura de las danzas de la muerte" style="max-height: 14%;">
+          <img src="presentacion_recursos/image50.png" alt="Texto Danza de la Muerte" style="max-height: 82%;">
+          <span class="zoom-hint">🔍 Ampliar Estructura</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 40: LITERATURA Y CINE: El Nombre de la Rosa (1986) -->
+    <section class="slide" data-index="40" data-title="Literatura y Cine: El Nombre de la Rosa (1986)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>LITERATURA Y CINE: EL NOMBRE DE LA ROSA (1986)</strong></h2>
+        </div>
+        <span class="slide-number">40 / 40</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-image" style="flex: 1;" onclick="openLightbox('presentacion_recursos/image52.jpg')">
+          <img src="presentacion_recursos/image52.jpg" alt="Literatura y Cine: El Nombre de la Rosa (1986)">
+          <span class="zoom-hint">🔍 Ampliar Cartel</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- BOTTOM NAVIGATION BAR -->
+  <div class="bottom-bar">
+    <div class="progress-track">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="aux-controls">
+      <button class="aux-btn" onclick="toggleDrawer()" title="Índice de diapositivas (M)">☰ Índice</button>
+      <button class="aux-btn" onclick="goToSlide(2)" title="Ir a Contenidos">📜 Contenidos</button>
+    </div>
+    <div class="nav-controls">
+      <button class="nav-btn" id="prevBtn" onclick="prevSlide()" title="Anterior (←)">‹</button>
+      <div class="indicator" id="slideIndicator">Cita Inicial</div>
+      <button class="nav-btn" id="nextBtn" onclick="nextSlide()" title="Siguiente (→)">›</button>
+    </div>
+    <div class="aux-controls">
+      <button class="aux-btn" onclick="toggleFullscreen()" title="Pantalla Completa (F)">⛶ Pantalla Completa</button>
+    </div>
+  </div>
+
+  <!-- SLIDE INDEX DRAWER MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this) toggleDrawer()">
+    <div class="index-drawer">
+      <div class="drawer-header">
+        <h3>Índice de la Presentación • TEMA 2: Literatura Medieval</h3>
+        <button class="drawer-close" onclick="toggleDrawer()">×</button>
+      </div>
+      <div class="drawer-body" id="drawerBody"></div>
+    </div>
+  </div>
+
+  <!-- IMAGE LIGHTBOX -->
+  <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">×</span>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="Imagen ampliada">
+  </div>
+
+  <!-- CARD EXPANSION MODAL -->
+  <div class="card-modal-overlay" id="cardModalOverlay" onclick="closeCardModal(event)">
+    <div class="card-modal-container" id="cardModalContainer">
+      <button class="card-modal-close" onclick="closeCardModal(event)" title="Cerrar (Esc)">×</button>
+      <div class="card-modal-content" id="cardModalContent"></div>
+      <div class="card-modal-footer">Haz clic fuera o pulsa Esc para cerrar</div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT ENGINE -->
+  <script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const progressBar = document.getElementById('progressBar');
+    const slideIndicator = document.getElementById('slideIndicator');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const drawerBody = document.getElementById('drawerBody');
+    const modalOverlay = document.getElementById('modalOverlay');
+
+    slides.forEach((slide, idx) => {
+      const item = document.createElement('div');
+      item.className = 'drawer-item';
+      const num = idx + 1;
+      const title = slide.dataset.title || 'Diapositiva ' + num;
+      const numLabel = num < 10 ? '0' + num : num;
+      item.innerHTML = `<span class="item-num">${numLabel}</span> <span>${title}</span>`;
+      item.onclick = () => { goToSlide(idx); toggleDrawer(); };
+      drawerBody.appendChild(item);
+    });
+
+    function pauseAllVideos() {
+      document.querySelectorAll('video').forEach(v => v.pause());
+    }
+
+    function checkHash() {
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#slide-')) {
+        const num = parseInt(hash.replace('#slide-', ''), 10);
+        if (!isNaN(num) && num >= 0 && num < totalSlides) {
+          currentIndex = num;
+        }
+      }
+    }
+    checkHash();
+
+    function updateView(updateHash = true) {
+      pauseAllVideos();
+      slides.forEach((s, idx) => {
+        s.classList.toggle('active', idx === currentIndex);
+      });
+      const pct = (currentIndex / (totalSlides - 1)) * 100;
+      progressBar.style.width = pct + '%';
+      slideIndicator.textContent = `${currentIndex + 1} / ${totalSlides}`;
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === totalSlides - 1;
+      document.querySelectorAll('.drawer-item').forEach((it, idx) => {
+        it.classList.toggle('current', idx === currentIndex);
+      });
+      if (updateHash && window.location.hash !== `#slide-${currentIndex}`) {
+        history.replaceState(null, '', `#slide-${currentIndex}`);
+      }
+    }
+
+    window.addEventListener('hashchange', () => {
+      checkHash();
+      updateView(false);
+    });
+
+    function goToSlide(index) {
+      if (index >= 0 && index < totalSlides) {
+        currentIndex = index;
+        updateView();
+      }
+    }
+
+    function nextSlide() {
+      if (currentIndex < totalSlides - 1) {
+        currentIndex++;
+        updateView();
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateView();
+      }
+    }
+
+    function toggleDrawer() {
+      modalOverlay.classList.toggle('active');
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => console.log(err));
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    function openLightbox(src) {
+      const lb = document.getElementById('lightboxOverlay');
+      const img = document.getElementById('lightboxImg');
+      img.src = src;
+      lb.classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxOverlay').classList.remove('active');
+    }
+
+    function openCardModal(cardElement) {
+      const modal = document.getElementById('cardModalOverlay');
+      const container = document.getElementById('cardModalContainer');
+      const content = document.getElementById('cardModalContent');
+
+      container.className = 'card-modal-container';
+      const tones = ['tone-blue', 'tone-amber', 'tone-emerald', 'tone-purple', 'tone-rose', 'tone-teal', 'burgundy', 'blue'];
+      let matched = false;
+      for (const t of tones) {
+        if (cardElement.classList.contains(t)) {
+          container.classList.add(t);
+          matched = true;
+          break;
+        }
+      }
+      if (!matched) {
+        container.classList.add('gold');
+      }
+
+      content.innerHTML = cardElement.innerHTML;
+      modal.classList.add('active');
+    }
+
+    function closeCardModal(e) {
+      if (e) {
+        if (e.target.closest('#cardModalContainer') && !e.target.closest('.card-modal-close')) {
+          return;
+        }
+      }
+      document.getElementById('cardModalOverlay').classList.remove('active');
+    }
+
+    document.getElementById('presentationContainer').addEventListener('click', (e) => {
+      if (e.target.closest('button') || e.target.closest('video') || e.target.closest('a') ||
+          e.target.closest('.pane-image') || e.target.closest('.contents-bust-pane') ||
+          e.target.closest('.cover-img-pane') || e.target.closest('.activity-img-box') ||
+          e.target.closest('.c-head') || e.target.closest('.c-lvl1') || e.target.closest('.c-lvl2')) {
+        return;
+      }
+      const card = e.target.closest('.card, .activity-task, .comp-table-wrap');
+      if (card) {
+        openCardModal(card);
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (modalOverlay.classList.contains('active')) {
+        if (e.key === 'Escape') toggleDrawer();
+        return;
+      }
+      if (document.getElementById('cardModalOverlay').classList.contains('active')) {
+        if (e.key === 'Escape') closeCardModal();
+        return;
+      }
+      if (document.getElementById('lightboxOverlay').classList.contains('active')) {
+        if (e.key === 'Escape') closeLightbox();
+        return;
+      }
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') {
+        prevSlide();
+      } else if (e.key === 'Home') {
+        goToSlide(0);
+      } else if (e.key === 'End') {
+        goToSlide(totalSlides - 1);
+      } else if (e.key.toLowerCase() === 'f') {
+        toggleFullscreen();
+      } else if (e.key.toLowerCase() === 'm') {
+        toggleDrawer();
+      }
+    });
+
+    let startX = 0;
+    let startY = 0;
+    window.addEventListener('touchstart', (e) => {
+      startX = e.changedTouches[0].screenX;
+      startY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      const diffX = e.changedTouches[0].screenX - startX;
+      const diffY = e.changedTouches[0].screenY - startY;
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
+        if (diffX < 0) nextSlide();
+        else prevSlide();
+      }
+    }, { passive: true });
+
+    updateView();
+  </script>
+</body>
+</html>
